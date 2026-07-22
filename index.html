@@ -21,10 +21,18 @@
         <!-- Left: Input Code (Legacy) -->
         <div class="flex flex-col bg-slate-800 rounded-lg border border-slate-700 overflow-hidden shadow-lg">
             <div class="bg-slate-700 px-4 py-2 text-sm font-semibold text-slate-300 flex justify-between items-center">
-                <span>Legacy Code Input</span>
+                <div class="flex items-center space-x-2">
+                    <span>Legacy Code</span>
+                    <!-- Language Selector -->
+                    <select id="language-select" class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded border border-slate-600 focus:outline-none">
+                        <option value="javascript">JavaScript</option>
+                        <option value="python">Python</option>
+                        <option value="cobol">COBOL</option>
+                    </select>
+                </div>
                 <button onclick="encryptAndSimulate()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-3 py-1 rounded transition cursor-pointer">Refactor & Audit</button>
             </div>
-            <!-- Standard Textarea to fix typing issues on GitHub Pages -->
+            <!-- Standard Textarea -->
             <textarea id="code-input" class="flex-1 w-full h-[400px] p-4 bg-slate-900 text-slate-200 font-mono text-sm resize-none focus:outline-none" spellcheck="false">// Write or paste your legacy code here...
 function oldFunction() {
     var x = 10;
@@ -34,8 +42,10 @@ function oldFunction() {
 
         <!-- Right: Output / ZK Audit Results -->
         <div class="flex flex-col bg-slate-800 rounded-lg border border-slate-700 overflow-hidden shadow-lg">
-            <div class="bg-slate-700 px-4 py-2 text-sm font-semibold text-slate-300">
+            <div class="bg-slate-700 px-4 py-2 text-sm font-semibold text-slate-300 flex justify-between items-center">
                 <span>Refactored & ZK-Audited Output</span>
+                <!-- Copy Code Button -->
+                <button onclick="copyOutputCode()" id="copy-btn" class="hidden bg-slate-600 hover:bg-slate-500 text-white text-xs px-2 py-1 rounded transition cursor-pointer">Copy Code</button>
             </div>
             <div id="output-container" class="flex-1 p-4 font-mono text-sm text-slate-300 bg-slate-950 overflow-y-auto">
                 // ZK-Proof status and refactored code will appear here...
@@ -46,6 +56,8 @@ function oldFunction() {
 
     <!-- Scripting -->
     <script>
+        let latestRefactoredCode = "";
+
         // Browser එක තුළදීම Zero-Knowledge Proof (Hash) එකක් සාදා ගන්නා ආකාරය
         async function generateZKProof(code) {
             const encoder = new TextEncoder();
@@ -59,9 +71,12 @@ function oldFunction() {
         async function encryptAndSimulate() {
             const codeInput = document.getElementById('code-input');
             const code = codeInput.value;
+            const language = document.getElementById('language-select').value;
             const outputDiv = document.getElementById('output-container');
+            const copyBtn = document.getElementById('copy-btn');
             
-            outputDiv.innerHTML = `<span class="text-yellow-400">[1] Generating Zero-Knowledge Proof (Client-side)...</span><br>`;
+            copyBtn.classList.add('hidden');
+            outputDiv.innerHTML = `<span class="text-yellow-400">[1] Generating Zero-Knowledge Proof (Client-side) for ${language}...</span><br>`;
             
             // ZK Hash එක ලබා ගැනීම
             const zkProof = await generateZKProof(code);
@@ -72,9 +87,37 @@ function oldFunction() {
             }, 800);
 
             setTimeout(() => {
+                if (language === 'python') {
+                    latestRefactoredCode = "def modern_function():\n    x = 10\n    print(f'Value: {x}')";
+                } else if (language === 'cobol') {
+                    latestRefactoredCode = "IDENTIFICATION DIVISION.\nPROGRAM-ID. MODERN-PROG.\nDATA DIVISION.\nWORKING-STORAGE SECTION.\n01 X PIC 9(2) VALUE 10.";
+                } else {
+                    latestRefactoredCode = "const modernFunction = () => {\n    const x = 10;\n    console.log(`Value: ${x}`);\n};";
+                }
+
                 outputDiv.innerHTML += `<span class="text-emerald-400">[3] Success! Modernized Code:</span><br><br>`;
-                outputDiv.innerHTML += `<pre class="text-slate-200">const modernFunction = () => {\n    const x = 10;\n    console.log(\`Value: \${x}\`);\n};</pre>`;
+                outputDiv.innerHTML += `<pre class="text-slate-200">${escapeHtml(latestRefactoredCode)}</pre>`;
+                copyBtn.classList.remove('hidden');
             }, 1600);
+        }
+
+        function copyOutputCode() {
+            navigator.clipboard.writeText(latestRefactoredCode).then(() => {
+                const copyBtn = document.getElementById('copy-btn');
+                copyBtn.innerText = "Copied!";
+                setTimeout(() => {
+                    copyBtn.innerText = "Copy Code";
+                }, 2000);
+            });
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
         }
     </script>
 </body>
