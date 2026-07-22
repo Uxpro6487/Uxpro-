@@ -6,8 +6,6 @@
     <title>Privacy-First Code Refactor Sandbox</title>
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Monaco Editor Loader -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.38.0/min/vs/loader.min.js"></script>
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col">
 
@@ -24,9 +22,14 @@
         <div class="flex flex-col bg-slate-800 rounded-lg border border-slate-700 overflow-hidden shadow-lg">
             <div class="bg-slate-700 px-4 py-2 text-sm font-semibold text-slate-300 flex justify-between items-center">
                 <span>Legacy Code Input</span>
-                <button onclick="encryptAndSimulate()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-3 py-1 rounded transition">Refactor & Audit</button>
+                <button onclick="encryptAndSimulate()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-3 py-1 rounded transition cursor-pointer">Refactor & Audit</button>
             </div>
-            <div id="editor-container" class="flex-1 min-h-[400px]"></div>
+            <!-- Standard Textarea to fix typing issues on GitHub Pages -->
+            <textarea id="code-input" class="flex-1 w-full h-[400px] p-4 bg-slate-900 text-slate-200 font-mono text-sm resize-none focus:outline-none" spellcheck="false">// Write or paste your legacy code here...
+function oldFunction() {
+    var x = 10;
+    console.log(x);
+}</textarea>
         </div>
 
         <!-- Right: Output / ZK Audit Results -->
@@ -41,19 +44,8 @@
 
     </main>
 
-    <!-- Script to Initialize Monaco Editor & ZK Simulation -->
+    <!-- Scripting -->
     <script>
-        let editor;
-        require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.38.0/min' }});
-        require(['vs/editor/editor.main'], function() {
-            editor = monaco.editor.create(document.getElementById('editor-container'), {
-                value: "// Write or paste your legacy code here...\nfunction oldFunction() {\n    var x = 10;\n    console.log(x);\n}",
-                language: 'javascript',
-                theme: 'vs-dark',
-                automaticLayout: true
-            });
-        });
-
         // Browser එක තුළදීම Zero-Knowledge Proof (Hash) එකක් සාදා ගන්නා ආකාරය
         async function generateZKProof(code) {
             const encoder = new TextEncoder();
@@ -65,7 +57,8 @@
         }
 
         async function encryptAndSimulate() {
-            const code = editor.getValue();
+            const codeInput = document.getElementById('code-input');
+            const code = codeInput.value;
             const outputDiv = document.getElementById('output-container');
             
             outputDiv.innerHTML = `<span class="text-yellow-400">[1] Generating Zero-Knowledge Proof (Client-side)...</span><br>`;
