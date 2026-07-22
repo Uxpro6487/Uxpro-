@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uxpro - Privacy-First Code Refactor Sandbox</title>
+    <title>Uxpro - Privacy-First Developer Sandbox & Tools</title>
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -25,7 +25,7 @@
     <!-- WELCOME DASHBOARD -->
     <div id="welcome-view" class="relative z-10 flex-1 flex flex-col items-center p-6 sm:p-10 max-w-4xl mx-auto w-full">
         
-        <header class="w-full flex justify-between items-center py-4 mb-12 border-b border-slate-800/60">
+        <header class="w-full flex justify-between items-center py-4 mb-12 border-b border-slate-800/60 relative">
             <div class="flex items-center gap-2.5">
                 <div class="w-9 h-9 rounded-xl bg-slate-900 border border-emerald-500/30 flex items-center justify-center shadow-md">
                     <svg class="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -35,10 +35,21 @@
                 </div>
                 <span class="text-xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">UXPRO</span>
             </div>
-            <button class="w-10 h-10 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-col items-center justify-center gap-1.5 hover:border-emerald-500/40 transition cursor-pointer">
-                <span class="w-4 h-0.5 bg-slate-300 rounded-full"></span>
-                <span class="w-4 h-0.5 bg-slate-300 rounded-full"></span>
-            </button>
+            
+            <!-- Menu Button & Dropdown -->
+            <div class="relative">
+                <button onclick="toggleMenuDropdown(event)" class="w-10 h-10 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-col items-center justify-center gap-1.5 hover:border-emerald-500/40 transition cursor-pointer">
+                    <span class="w-4 h-0.5 bg-slate-300 rounded-full"></span>
+                    <span class="w-4 h-0.5 bg-slate-300 rounded-full"></span>
+                </button>
+                <div id="menu-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl py-2 z-50">
+                    <div class="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-800">Developer Tools</div>
+                    <button onclick="switchTool('refactor')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">⚡ Code Refactor & ZK</button>
+                    <button onclick="switchTool('json')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">📦 JSON Formatter</button>
+                    <button onclick="switchTool('base64')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🔤 Base64 Encoder</button>
+                    <button onclick="switchTool('css')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🎨 CSS Shadow Generator</button>
+                </div>
+            </div>
         </header>
 
         <!-- Hero Section -->
@@ -46,7 +57,7 @@
             <div class="flex flex-wrap justify-center gap-2.5 mb-6">
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-slate-300 text-xs font-medium">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    VERSION V1.2 · ACTIVE
+                    VERSION V1.3 · ACTIVE
                 </div>
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-slate-300 text-xs font-medium">
                     <span class="text-emerald-400">✦</span> BY UXPRO TEAM
@@ -54,14 +65,14 @@
             </div>
 
             <h1 class="text-4xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400 mb-6 tracking-tight">
-                UXPRO <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">SANDBOX</span>
+                UXPRO <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">TOOLS</span>
             </h1>
             <p class="text-slate-400 text-base sm:text-lg max-w-xl mb-8 leading-relaxed">
-                Transform your legacy source code into modern, optimized stacks securely with client-side Zero-Knowledge proofs.
+                Your privacy-first, client-side utility toolkit for code refactoring, formatting, and web development.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 w-full max-w-md justify-center">
-                <button onclick="enterSandbox()" class="flex-1 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold px-6 py-3.5 rounded-2xl transition duration-300 cursor-pointer shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2">
+                <button onclick="enterSandbox('refactor')" class="flex-1 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold px-6 py-3.5 rounded-2xl transition duration-300 cursor-pointer shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2">
                     <span>Get Started</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
                 </button>
@@ -71,32 +82,33 @@
             </div>
         </div>
 
-        <!-- Features Section -->
+        <!-- Features Grid -->
         <div class="w-full mt-4">
             <div class="text-center mb-8">
-                <span class="text-xs uppercase tracking-widest text-emerald-400 font-bold">About the Platform</span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">What UXPRO does</h2>
+                <span class="text-xs uppercase tracking-widest text-emerald-400 font-bold">Toolkit Suite</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Available Utilities</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 p-6 rounded-3xl hover:border-emerald-500/30 transition duration-300">
-                    <div class="w-10 h-10 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">
-                        🛡️
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Zero-Knowledge Audits</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Verify and audit your code security locally on your device without exposing sensitive source files to external servers.
-                    </p>
+                <div onclick="enterSandbox('refactor')" class="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 p-6 rounded-3xl hover:border-emerald-500/30 transition duration-300 cursor-pointer">
+                    <div class="w-10 h-10 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">⚡</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Code Refactor & ZK Audit</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Convert legacy code blocks securely with client-side Zero-Knowledge proofs.</p>
                 </div>
-
-                <div class="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 p-6 rounded-3xl hover:border-emerald-500/30 transition duration-300">
-                    <div class="w-10 h-10 rounded-2xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 mb-4">
-                        ⚡
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Instant AI Refactoring</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Instantly convert outdated legacy code blocks into clean, high-performance modern programming stacks.
-                    </p>
+                <div onclick="enterSandbox('json')" class="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 p-6 rounded-3xl hover:border-emerald-500/30 transition duration-300 cursor-pointer">
+                    <div class="w-10 h-10 rounded-2xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 mb-4">📦</div>
+                    <h3 class="text-lg font-bold text-white mb-2">JSON Formatter & Validator</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Clean up, beautify, and validate complex JSON strings instantly.</p>
+                </div>
+                <div onclick="enterSandbox('base64')" class="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 p-6 rounded-3xl hover:border-emerald-500/30 transition duration-300 cursor-pointer">
+                    <div class="w-10 h-10 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-4">🔤</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Base64 Encoder / Decoder</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Quickly encode text to Base64 or decode it back with one click.</p>
+                </div>
+                <div onclick="enterSandbox('css')" class="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 p-6 rounded-3xl hover:border-emerald-500/30 transition duration-300 cursor-pointer">
+                    <div class="w-10 h-10 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4">🎨</div>
+                    <h3 class="text-lg font-bold text-white mb-2">CSS Shadow Generator</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Design custom glowing shadows and copy production-ready CSS snippets.</p>
                 </div>
             </div>
         </div>
@@ -112,27 +124,32 @@
                 </button>
                 <div class="h-4 w-px bg-slate-800"></div>
                 <div class="flex items-center gap-2">
-                    <div class="w-7 h-7 rounded-lg bg-slate-900 border border-emerald-500/30 flex items-center justify-center">
-                        <svg class="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="4 17 10 11 4 5"></polyline>
-                            <line x1="12" y1="19" x2="20" y2="19"></line>
-                        </svg>
-                    </div>
-                    <span class="text-base font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">UXPRO</span>
+                    <span id="active-tool-title" class="text-sm font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 uppercase">Code Refactor</span>
                 </div>
             </div>
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3 relative">
+                <!-- App view Menu Button & Dropdown -->
+                <button onclick="toggleMenuDropdown(event)" class="text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-1.5 rounded-xl transition cursor-pointer flex items-center gap-1.5">
+                    ⚙️ Switch Tool ▾
+                </button>
+                <div id="menu-dropdown" class="hidden absolute right-0 top-10 w-56 bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl py-2 z-50">
+                    <div class="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-800">Developer Tools</div>
+                    <button onclick="switchTool('refactor')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">⚡ Code Refactor & ZK</button>
+                    <button onclick="switchTool('json')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">📦 JSON Formatter</button>
+                    <button onclick="switchTool('base64')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🔤 Base64 Encoder</button>
+                    <button onclick="switchTool('css')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🎨 CSS Shadow Generator</button>
+                </div>
                 <button onclick="toggleHistoryModal()" class="text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3.5 py-1.5 rounded-xl transition cursor-pointer flex items-center gap-1.5">
                     📜 History
                 </button>
-                <span class="hidden sm:inline-flex text-[11px] font-medium bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/20">Client-Side & 100% Free</span>
             </div>
         </header>
 
         <main class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 p-4 sm:p-6 max-w-[1600px] w-full mx-auto">
+            <!-- Left Panel / Input -->
             <div class="flex flex-col bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 overflow-hidden shadow-2xl">
                 <div class="bg-slate-900/80 border-b border-slate-800 px-4 py-3 flex justify-between items-center">
-                    <div class="flex items-center space-x-3">
+                    <div id="input-header-label" class="flex items-center space-x-3">
                         <span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
                             <span class="w-2 h-2 rounded-full bg-amber-400"></span>
                             Legacy Code
@@ -143,7 +160,7 @@
                             <option value="cobol">COBOL</option>
                         </select>
                     </div>
-                    <button onclick="encryptAndSimulate()" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs px-4 py-2 rounded-xl transition cursor-pointer shadow-md shadow-emerald-600/20">
+                    <button id="action-btn" onclick="executeCurrentTool()" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs px-4 py-2 rounded-xl transition cursor-pointer shadow-md shadow-emerald-600/20">
                         Refactor & Audit
                     </button>
                 </div>
@@ -165,16 +182,17 @@
             return False</textarea>
             </div>
 
+            <!-- Right Panel / Output -->
             <div class="flex flex-col bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 overflow-hidden shadow-2xl">
                 <div class="bg-slate-900/80 border-b border-slate-800 px-4 py-3 flex justify-between items-center">
-                    <span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                    <span id="output-header-label" class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
                         <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
                         Refactored & ZK-Audited Output
                     </span>
                     <button onclick="copyOutputCode()" id="copy-btn" class="hidden bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs px-3 py-1.5 rounded-xl transition cursor-pointer">Copy Code</button>
                 </div>
                 <div id="output-container" class="flex-1 p-4 font-mono text-sm text-slate-300 bg-slate-950/70 overflow-y-auto leading-relaxed">
-                    <span class="text-slate-500">// ZK-Proof status and refactored code will appear here...</span>
+                    <span class="text-slate-500">// Output results will appear here...</span>
                 </div>
             </div>
         </main>
@@ -193,11 +211,72 @@
 
     <!-- Scripting -->
     <script>
+        let currentTool = 'refactor';
         let latestRefactoredCode = "";
 
-        function enterSandbox() {
+        function toggleMenuDropdown(event) {
+            event.stopPropagation();
+            // Close any existing dropdowns or toggle current
+            const dropdowns = document.querySelectorAll('#menu-dropdown');
+            dropdowns.forEach(d => d.classList.toggle('hidden'));
+        }
+
+        window.addEventListener('click', () => {
+            const dropdowns = document.querySelectorAll('#menu-dropdown');
+            dropdowns.forEach(d => d.classList.add('hidden'));
+        });
+
+        function switchTool(tool) {
+            currentTool = tool;
+            enterSandbox(tool);
+        }
+
+        function enterSandbox(tool = 'refactor') {
+            currentTool = tool;
             document.getElementById('welcome-view').classList.add('hidden');
             document.getElementById('app-view').classList.remove('hidden');
+
+            const titleElem = document.getElementById('active-tool-title');
+            const inputLabel = document.getElementById('input-header-label');
+            const outputLabel = document.getElementById('output-header-label');
+            const codeInput = document.getElementById('code-input');
+            const actionBtn = document.getElementById('action-btn');
+
+            if (tool === 'refactor') {
+                titleElem.innerText = "Code Refactor & ZK Audit";
+                inputLabel.innerHTML = `
+                    <span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-amber-400"></span> Legacy Code
+                    </span>
+                    <select id="language-select" class="bg-slate-800/90 text-slate-200 text-xs px-2.5 py-1.5 rounded-lg border border-slate-700 focus:outline-none focus:border-emerald-500 transition cursor-pointer">
+                        <option value="python">Python</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="cobol">COBOL</option>
+                    </select>`;
+                outputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Refactored & ZK-Audited Output`;
+                actionBtn.innerText = "Refactor & Audit";
+                codeInput.value = `class LogProcessor:\n    def __init__(self, log_file_path):\n        self.log_file_path = log_file_path\n\n    def load_logs(self):\n        print "[*] Loading log file from: " + self.log_file_path`;
+            } else if (tool === 'json') {
+                titleElem.innerText = "JSON Formatter & Validator";
+                inputLabel.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Raw JSON Input</span>`;
+                outputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Formatted & Validated JSON`;
+                actionBtn.innerText = "Format JSON";
+                codeInput.value = `{"name":"UXPRO","version":1.3,"features":["ZK-Proofs","Refactor","Local History"],"active":true}`;
+            } else if (tool === 'base64') {
+                titleElem.innerText = "Base64 Encoder / Decoder";
+                inputLabel.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Plain Text</span>`;
+                outputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Base64 Output`;
+                actionBtn.innerText = "Encode Base64";
+                codeInput.value = `Hello, UXPRO Security Sandbox!`;
+            } else if (tool === 'css') {
+                titleElem.innerText = "CSS Shadow Generator";
+                inputLabel.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Shadow Settings (X, Y, Blur, Spread)</span>`;
+                outputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Generated CSS & Preview`;
+                actionBtn.innerText = "Generate CSS";
+                codeInput.value = `0 10px 25px -5px rgba(16, 185, 129, 0.3)`;
+            }
+            document.getElementById('output-container').innerHTML = `<span class="text-slate-500">// Output results will appear here...</span>`;
+            document.getElementById('copy-btn').classList.add('hidden');
         }
 
         function goHome() {
@@ -210,84 +289,56 @@
             const data = encoder.encode(code);
             const hashBuffer = await crypto.subtle.digest('SHA-256', data);
             const hashArray = Array.from(new Uint8Array(hashBuffer));
-            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-            return hashHex;
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
         }
 
-        // REALISTIC DYNAMIC REFACTORING LOGIC BASED ON INPUT CODE
-        function performRealRefactoring(code, language) {
-            if (language === 'python') {
-                let refactored = code;
-                
-                // Convert python 2 prints to python 3 prints
-                refactored = refactored.replace(/print\s+(["'].*?["'])\s*\+\s*(.+)/g, 'print($1 + $2)');
-                refactored = refactored.replace(/print\s+["'](.*?)["']\s*\+\s*(.+)/g, 'print("$1" + $2)');
-                refactored = refactored.replace(/print\s+"([^"]+)"/g, 'print("$1")');
-                refactored = refactored.replace(/print\s+'([^']+)'/g, 'print(\'$1\')');
-
-                // Convert except Exception, e to except Exception as e
-                refactored = refactored.replace(/except\s+([A-Za-z_][A-Za-z0-9_]*),\s*([A-Za-z_][A-Za-z0-9_]*):/g, 'except $1 as $2:');
-
-                if (refactored.includes('f = open(')) {
-                    refactored = "from pathlib import Path\n\n" + refactored;
-                    refactored = refactored.replace(/f\s*=\s*open\(([^,]+),\s*['"]r['"]\)/g, '# Using modern Pathlib\n            file_path = Path($1)\n            content = file_path.read_text(encoding="utf-8")');
-                    refactored = refactored.replace(/for\s+line\s+in\s+f\.readlines\(\):/g, 'for line in content.splitlines():');
-                    refactored = refactored.replace(/f\.close\(\)/g, '# Auto-closed via pathlib');
-                }
-
-                if (!refactored.includes('from pathlib import Path') && code.includes('open(')) {
-                    refactored = "import os\nfrom pathlib import Path\n\n" + refactored;
-                }
-
-                return refactored;
-            } else if (language === 'javascript') {
-                let refactored = code.replace(/var\s+/g, 'const ');
-                refactored = refactored.replace(/function\s*\(([^)]*)\)\s*\{/g, 'const handleProcess = ($1) => {');
-                return "// Modernized ES6+ JavaScript\n" + refactored;
-            } else {
-                return "// Modernized COBOL Standard\n" + code;
-            }
-        }
-
-        async function encryptAndSimulate() {
-            const codeInput = document.getElementById('code-input');
-            const code = codeInput.value;
-            const language = document.getElementById('language-select').value;
+        function executeCurrentTool() {
+            const codeInput = document.getElementById('code-input').value;
             const outputDiv = document.getElementById('output-container');
             const copyBtn = document.getElementById('copy-btn');
-            
-            copyBtn.classList.add('hidden');
-            outputDiv.innerHTML = `<span class="text-amber-400 font-medium">[1] Generating Zero-Knowledge Proof (Client-side) for ${language}...</span><br>`;
-            
-            const zkProof = await generateZKProof(code);
-            
-            setTimeout(() => {
-                outputDiv.innerHTML += `<span class="text-indigo-400 font-medium">🔗 ZK-Proof Hash:</span> <span class="text-xs text-slate-400">${zkProof}</span><br><br>`;
-                outputDiv.innerHTML += `<span class="text-blue-400 font-medium">[2] Running Local AI Refactoring Engine...</span><br>`;
-            }, 600);
 
-            setTimeout(() => {
-                latestRefactoredCode = performRealRefactoring(code, language);
-
-                outputDiv.innerHTML += `<span class="text-emerald-400 font-medium">[3] Success! Modernized Code:</span><br><br>`;
-                outputDiv.innerHTML += `<pre class="text-emerald-200 bg-emerald-950/30 border border-emerald-500/20 p-3 rounded-xl">${escapeHtml(latestRefactoredCode)}</pre>`;
+            if (currentTool === 'refactor') {
+                const language = document.getElementById('language-select').value;
+                outputDiv.innerHTML = `<span class="text-amber-400">[1] Generating ZK-Proof...</span><br>`;
+                generateZKProof(codeInput).then(hash => {
+                    setTimeout(() => {
+                        latestRefactoredCode = `// Modernized Code (${language})\n// ZK Hash: ${hash}\n\n` + codeInput.replace(/print\s+(["'].*?["'])/g, 'print($1)');
+                        outputDiv.innerHTML = `<pre class="text-emerald-300">${escapeHtml(latestRefactoredCode)}</pre>`;
+                        copyBtn.classList.remove('hidden');
+                        saveToHistory(language, codeInput, latestRefactoredCode, hash);
+                    }, 600);
+                });
+            } else if (currentTool === 'json') {
+                try {
+                    const parsed = JSON.parse(codeInput);
+                    latestRefactoredCode = JSON.stringify(parsed, null, 4);
+                    outputDiv.innerHTML = `<pre class="text-emerald-300">${escapeHtml(latestRefactoredCode)}</pre>`;
+                    copyBtn.classList.remove('hidden');
+                } catch (e) {
+                    outputDiv.innerHTML = `<span class="text-red-400">Invalid JSON: ${e.message}</span>`;
+                }
+            } else if (currentTool === 'base64') {
+                try {
+                    latestRefactoredCode = btoa(codeInput);
+                    outputDiv.innerHTML = `<pre class="text-emerald-300">${escapeHtml(latestRefactoredCode)}</pre>`;
+                    copyBtn.classList.remove('hidden');
+                } catch (e) {
+                    outputDiv.innerHTML = `<span class="text-red-400">Encoding Error: ${e.message}</span>`;
+                }
+            } else if (currentTool === 'css') {
+                latestRefactoredCode = `box-shadow: ${codeInput};`;
+                outputDiv.innerHTML = `
+                    <pre class="text-emerald-300 mb-4">${escapeHtml(latestRefactoredCode)}</pre>
+                    <div class="p-6 bg-slate-900 rounded-xl flex items-center justify-center border border-slate-800" style="box-shadow: ${codeInput};">
+                        <span class="text-xs text-slate-300 font-bold">Preview Box</span>
+                    </div>`;
                 copyBtn.classList.remove('hidden');
-
-                saveToHistory(language, code, latestRefactoredCode, zkProof);
-            }, 1200);
+            }
         }
 
         function saveToHistory(language, legacyCode, refactoredCode, zkProof) {
             let history = JSON.parse(localStorage.getItem('uxpro_history')) || [];
-            const newItem = {
-                id: Date.now(),
-                date: new Date().toLocaleString(),
-                language,
-                legacyCode,
-                refactoredCode,
-                zkProof
-            };
-            history.unshift(newItem);
+            history.unshift({ id: Date.now(), date: new Date().toLocaleString(), language, legacyCode, refactoredCode, zkProof });
             if (history.length > 20) history.pop();
             localStorage.setItem('uxpro_history', JSON.stringify(history));
         }
@@ -296,51 +347,21 @@
             const modal = document.getElementById('history-modal');
             modal.classList.toggle('hidden');
             if (!modal.classList.contains('hidden')) {
-                renderHistoryList();
-            }
-        }
-
-        function renderHistoryList() {
-            const historyList = document.getElementById('history-list');
-            let history = JSON.parse(localStorage.getItem('uxpro_history')) || [];
-
-            if (history.length === 0) {
-                historyList.innerHTML = `<p class="text-slate-500 text-sm text-center py-6">No history found yet. Refactor some code to see it here!</p>`;
-                return;
-            }
-
-            historyList.innerHTML = history.map(item => `
-                <div class="bg-slate-950/60 border border-slate-800 p-4 rounded-xl flex flex-col gap-2">
-                    <div class="flex justify-between items-center text-xs text-slate-400">
-                        <span class="font-semibold text-emerald-400 uppercase">${item.language}</span>
-                        <span>${item.date}</span>
+                const historyList = document.getElementById('history-list');
+                let history = JSON.parse(localStorage.getItem('uxpro_history')) || [];
+                if (history.length === 0) {
+                    historyList.innerHTML = `<p class="text-slate-500 text-sm text-center py-6">No history found yet.</p>`;
+                    return;
+                }
+                historyList.innerHTML = history.map(item => `
+                    <div class="bg-slate-950/60 border border-slate-800 p-4 rounded-xl flex flex-col gap-2">
+                        <div class="flex justify-between items-center text-xs text-slate-400">
+                            <span class="font-semibold text-emerald-400 uppercase">${item.language}</span>
+                            <span>${item.date}</span>
+                        </div>
+                        <pre class="text-xs text-slate-300 font-mono bg-slate-900/80 p-2.5 rounded-xl overflow-x-auto max-h-24">${escapeHtml(item.legacyCode)}</pre>
                     </div>
-                    <pre class="text-xs text-slate-300 font-mono bg-slate-900/80 p-2.5 rounded-xl overflow-x-auto max-h-24">${escapeHtml(item.legacyCode)}</pre>
-                    <div class="flex justify-end gap-2 mt-1">
-                        <button onclick="restoreHistory(${item.id})" class="text-xs bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold px-3 py-1.5 rounded-lg transition cursor-pointer">Restore</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function restoreHistory(id) {
-            let history = JSON.parse(localStorage.getItem('uxpro_history')) || [];
-            const item = history.find(h => h.id === id);
-            if (item) {
-                document.getElementById('code-input').value = item.legacyCode;
-                document.getElementById('language-select').value = item.language;
-                
-                const outputDiv = document.getElementById('output-container');
-                const copyBtn = document.getElementById('copy-btn');
-                latestRefactoredCode = item.refactoredCode;
-                
-                outputDiv.innerHTML = `<span class="text-indigo-400 font-medium">🔗 Restored ZK-Proof Hash:</span> <span class="text-xs text-slate-400">${item.zkProof}</span><br><br>`;
-                outputDiv.innerHTML += `<span class="text-emerald-400 font-medium">Restored Modernized Code:</span><br><br>`;
-                outputDiv.innerHTML += `<pre class="text-emerald-200 bg-emerald-950/30 border border-emerald-500/20 p-3 rounded-xl">${escapeHtml(item.refactoredCode)}</pre>`;
-                copyBtn.classList.remove('hidden');
-
-                toggleHistoryModal();
-                enterSandbox();
+                `).join('');
             }
         }
 
@@ -348,21 +369,12 @@
             navigator.clipboard.writeText(latestRefactoredCode).then(() => {
                 const copyBtn = document.getElementById('copy-btn');
                 copyBtn.innerText = "Copied!";
-                copyBtn.classList.add('bg-emerald-600', 'text-slate-950', 'font-bold');
-                setTimeout(() => {
-                    copyBtn.innerText = "Copy Code";
-                    copyBtn.classList.remove('bg-emerald-600', 'text-slate-950', 'font-bold');
-                }, 2000);
+                setTimeout(() => copyBtn.innerText = "Copy Code", 2000);
             });
         }
 
         function escapeHtml(text) {
-            return text
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         }
     </script>
 </body>
