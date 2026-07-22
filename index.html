@@ -6,53 +6,82 @@
     <title>Uxpro - Privacy-First Code Refactor Sandbox</title>
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom scrollbar & glowing effects */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        .glow-effect { box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.15); }
+    </style>
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col">
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col selection:bg-emerald-500 selection:text-slate-950">
+
+    <!-- Ambient background glow -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/2 -right-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+    </div>
 
     <!-- WELCOME DASHBOARD (Landing View) -->
-    <div id="welcome-view" class="flex-1 flex flex-col justify-center items-center p-6 text-center">
-        <div class="max-w-2xl bg-slate-800 border border-slate-700 p-8 rounded-2xl shadow-2xl">
-            <span class="text-xs bg-emerald-900 text-emerald-300 px-3 py-1 rounded-full border border-emerald-700 mb-4 inline-block">🔒 Zero-Knowledge & AI Powered</span>
-            <h1 class="text-4xl font-extrabold text-emerald-400 mb-4">Welcome to Uxpro</h1>
-            <p class="text-slate-300 text-base mb-6 leading-relaxed">
+    <div id="welcome-view" class="relative z-10 flex-1 flex flex-col justify-center items-center p-6 text-center">
+        <div class="max-w-2xl bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 sm:p-12 rounded-3xl glow-effect shadow-2xl">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium mb-6">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Zero-Knowledge & AI Powered
+            </div>
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 mb-4 tracking-tight">Uxpro</h1>
+            <p class="text-slate-400 text-sm sm:text-base mb-8 leading-relaxed">
                 Transform your legacy source code into modern, optimized stacks securely. Powered by client-side Zero-Knowledge proofs and local AI refactoring with zero data leaks.
             </p>
-            <button onclick="enterSandbox()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-8 py-3 rounded-xl transition cursor-pointer shadow-lg text-lg">
-                Get Started →
+            <button onclick="enterSandbox()" class="group relative inline-flex items-center gap-3 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-slate-950 font-bold px-8 py-4 rounded-2xl transition-all duration-300 cursor-pointer shadow-lg shadow-emerald-500/20 hover:scale-[1.02] active:scale-[0.98]">
+                <span>Get Started</span>
+                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
             </button>
         </div>
     </div>
 
     <!-- MAIN APP DASHBOARD (Hidden by default) -->
-    <div id="app-view" class="hidden flex-1 flex flex-col min-h-screen">
-        <!-- Header -->
-        <header class="bg-slate-800 border-b border-slate-700 p-4 flex justify-between items-center shadow-md">
-            <div class="flex items-center space-x-3">
-                <button onclick="goHome()" class="text-slate-400 hover:text-white text-xs bg-slate-700 px-2.5 py-1 rounded transition cursor-pointer">← Home</button>
-                <h1 class="text-xl font-bold text-emerald-400">Uxpro Sandbox</h1>
+    <div id="app-view" class="hidden relative z-10 flex-1 flex flex-col min-h-screen">
+        <!-- Modern Header -->
+        <header class="bg-slate-900/60 backdrop-blur-md border-b border-slate-800/80 px-6 py-4 flex justify-between items-center sticky top-0 z-20">
+            <div class="flex items-center space-x-4">
+                <button onclick="goHome()" class="group flex items-center gap-1.5 text-slate-400 hover:text-white text-xs font-medium bg-slate-800/80 hover:bg-slate-800 border border-slate-700/60 px-3 py-1.5 rounded-xl transition cursor-pointer">
+                    <svg class="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    Home
+                </button>
+                <div class="h-4 w-px bg-slate-800"></div>
+                <h1 class="text-base sm:text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-300">Uxpro Sandbox</h1>
             </div>
-            <span class="text-xs bg-emerald-900 text-emerald-300 px-3 py-1 rounded-full border border-emerald-700">Client-Side & 100% Free</span>
+            <div class="flex items-center gap-2">
+                <span class="hidden sm:inline-flex text-[11px] font-medium bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/20">Client-Side & 100% Free</span>
+            </div>
         </header>
 
         <!-- Main Workspace -->
-        <main class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+        <main class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 p-4 sm:p-6 max-w-[1600px] w-full mx-auto">
             
             <!-- Left: Input Code (Legacy) -->
-            <div class="flex flex-col bg-slate-800 rounded-lg border border-slate-700 overflow-hidden shadow-lg">
-                <div class="bg-slate-700 px-4 py-2 text-sm font-semibold text-slate-300 flex justify-between items-center">
-                    <div class="flex items-center space-x-2">
-                        <span>Legacy Code</span>
+            <div class="flex flex-col bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 overflow-hidden shadow-2xl">
+                <div class="bg-slate-900/80 border-b border-slate-800 px-4 py-3 flex justify-between items-center">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                            Legacy Code
+                        </span>
                         <!-- Language Selector -->
-                        <select id="language-select" class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded border border-slate-600 focus:outline-none">
+                        <select id="language-select" class="bg-slate-800/90 text-slate-200 text-xs px-2.5 py-1.5 rounded-lg border border-slate-700 focus:outline-none focus:border-emerald-500 transition">
                             <option value="javascript">JavaScript</option>
                             <option value="python">Python</option>
                             <option value="cobol">COBOL</option>
                         </select>
                     </div>
-                    <button onclick="encryptAndSimulate()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-3 py-1 rounded transition cursor-pointer">Refactor & Audit</button>
+                    <button onclick="encryptAndSimulate()" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs px-4 py-2 rounded-xl transition cursor-pointer shadow-md shadow-emerald-600/20 hover:scale-[1.02] active:scale-[0.98]">
+                        Refactor & Audit
+                    </button>
                 </div>
                 <!-- Standard Textarea -->
-                <textarea id="code-input" class="flex-1 w-full h-[400px] p-4 bg-slate-900 text-slate-200 font-mono text-sm resize-none focus:outline-none" spellcheck="false">// Write or paste your legacy code here...
+                <textarea id="code-input" class="flex-1 w-full h-[400px] p-4 bg-slate-950/50 text-slate-200 font-mono text-sm resize-none focus:outline-none leading-relaxed" spellcheck="false">// Write or paste your legacy code here...
 function oldFunction() {
     var x = 10;
     console.log(x);
@@ -60,14 +89,17 @@ function oldFunction() {
             </div>
 
             <!-- Right: Output / ZK Audit Results -->
-            <div class="flex flex-col bg-slate-800 rounded-lg border border-slate-700 overflow-hidden shadow-lg">
-                <div class="bg-slate-700 px-4 py-2 text-sm font-semibold text-slate-300 flex justify-between items-center">
-                    <span>Refactored & ZK-Audited Output</span>
+            <div class="flex flex-col bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 overflow-hidden shadow-2xl">
+                <div class="bg-slate-900/80 border-b border-slate-800 px-4 py-3 flex justify-between items-center">
+                    <span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        Refactored & ZK-Audited Output
+                    </span>
                     <!-- Copy Code Button -->
-                    <button onclick="copyOutputCode()" id="copy-btn" class="hidden bg-slate-600 hover:bg-slate-500 text-white text-xs px-2 py-1 rounded transition cursor-pointer">Copy Code</button>
+                    <button onclick="copyOutputCode()" id="copy-btn" class="hidden bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs px-3 py-1.5 rounded-xl transition cursor-pointer">Copy Code</button>
                 </div>
-                <div id="output-container" class="flex-1 p-4 font-mono text-sm text-slate-300 bg-slate-950 overflow-y-auto">
-                    // ZK-Proof status and refactored code will appear here...
+                <div id="output-container" class="flex-1 p-4 font-mono text-sm text-slate-300 bg-slate-950/70 overflow-y-auto leading-relaxed">
+                    <span class="text-slate-500">// ZK-Proof status and refactored code will appear here...</span>
                 </div>
             </div>
 
@@ -88,7 +120,6 @@ function oldFunction() {
             document.getElementById('welcome-view').classList.remove('hidden');
         }
 
-        // Browser එක තුළදීම Zero-Knowledge Proof (Hash) එකක් සාදා ගන්නා ආකාරය
         async function generateZKProof(code) {
             const encoder = new TextEncoder();
             const data = encoder.encode(code);
@@ -106,14 +137,13 @@ function oldFunction() {
             const copyBtn = document.getElementById('copy-btn');
             
             copyBtn.classList.add('hidden');
-            outputDiv.innerHTML = `<span class="text-yellow-400">[1] Generating Zero-Knowledge Proof (Client-side) for ${language}...</span><br>`;
+            outputDiv.innerHTML = `<span class="text-amber-400 font-medium">[1] Generating Zero-Knowledge Proof (Client-side) for ${language}...</span><br>`;
             
-            // ZK Hash එක ලබා ගැනීම
             const zkProof = await generateZKProof(code);
             
             setTimeout(() => {
-                outputDiv.innerHTML += `<span class="text-indigo-400">🔗 ZK-Proof Hash:</span> <span class="text-xs text-slate-300">${zkProof}</span><br><br>`;
-                outputDiv.innerHTML += `<span class="text-blue-400">[2] Running Local AI Refactoring Engine...</span><br>`;
+                outputDiv.innerHTML += `<span class="text-indigo-400 font-medium">🔗 ZK-Proof Hash:</span> <span class="text-xs text-slate-400">${zkProof}</span><br><br>`;
+                outputDiv.innerHTML += `<span class="text-blue-400 font-medium">[2] Running Local AI Refactoring Engine...</span><br>`;
             }, 800);
 
             setTimeout(() => {
@@ -125,8 +155,8 @@ function oldFunction() {
                     latestRefactoredCode = "const modernFunction = () => {\n    const x = 10;\n    console.log(`Value: ${x}`);\n};";
                 }
 
-                outputDiv.innerHTML += `<span class="text-emerald-400">[3] Success! Modernized Code:</span><br><br>`;
-                outputDiv.innerHTML += `<pre class="text-slate-200">${escapeHtml(latestRefactoredCode)}</pre>`;
+                outputDiv.innerHTML += `<span class="text-emerald-400 font-medium">[3] Success! Modernized Code:</span><br><br>`;
+                outputDiv.innerHTML += `<pre class="text-emerald-200 bg-emerald-950/30 border border-emerald-500/20 p-3 rounded-xl">${escapeHtml(latestRefactoredCode)}</pre>`;
                 copyBtn.classList.remove('hidden');
             }, 1600);
         }
@@ -135,8 +165,10 @@ function oldFunction() {
             navigator.clipboard.writeText(latestRefactoredCode).then(() => {
                 const copyBtn = document.getElementById('copy-btn');
                 copyBtn.innerText = "Copied!";
+                copyBtn.classList.add('bg-emerald-600', 'text-slate-950', 'font-bold');
                 setTimeout(() => {
                     copyBtn.innerText = "Copy Code";
+                    copyBtn.classList.remove('bg-emerald-600', 'text-slate-950', 'font-bold');
                 }, 2000);
             });
         }
