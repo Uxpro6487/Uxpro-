@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy-First Code Refactor Sandbox</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Monaco Editor Loader -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.38.0/min/vs/loader.min.js"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-slate-800 border-b border-slate-700 p-4 flex justify-between items-center shadow-md">
+        <h1 class="text-xl font-bold text-emerald-400">🔒 ZK-CodeSandbox</h1>
+        <span class="text-xs bg-emerald-900 text-emerald-300 px-3 py-1 rounded-full border border-emerald-700">Client-Side & 100% Free</span>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+        
+        <!-- Left: Input Code (Legacy) -->
+        <div class="flex flex-col bg-slate-800 rounded-lg border border-slate-700 overflow-hidden shadow-lg">
+            <div class="bg-slate-700 px-4 py-2 text-sm font-semibold text-slate-300 flex justify-between items-center">
+                <span>Legacy Code Input</span>
+                <button onclick="encryptAndSimulate()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-3 py-1 rounded transition">Refactor & Audit</button>
+            </div>
+            <div id="editor-container" class="flex-1 min-h-[400px]"></div>
+        </div>
+
+        <!-- Right: Output / ZK Audit Results -->
+        <div class="flex flex-col bg-slate-800 rounded-lg border border-slate-700 overflow-hidden shadow-lg">
+            <div class="bg-slate-700 px-4 py-2 text-sm font-semibold text-slate-300">
+                <span>Refactored & ZK-Audited Output</span>
+            </div>
+            <div id="output-container" class="flex-1 p-4 font-mono text-sm text-slate-300 bg-slate-950 overflow-y-auto">
+                // ZK-Proof status and refactored code will appear here...
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Script to Initialize Monaco Editor & ZK Simulation -->
+    <script>
+        let editor;
+        require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.38.0/min' }});
+        require(['vs/editor/editor.main'], function() {
+            editor = monaco.editor.create(document.getElementById('editor-container'), {
+                value: "// Write or paste your legacy code here...\nfunction oldFunction() {\n    var x = 10;\n    console.log(x);\n}",
+                language: 'javascript',
+                theme: 'vs-dark',
+                automaticLayout: true
+            });
+        });
+
+        // Browser එක තුළදීම Zero-Knowledge Proof (Hash) එකක් සාදා ගන්නා ආකාරය
+        async function generateZKProof(code) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(code);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hashHex;
+        }
+
+        async function encryptAndSimulate() {
+            const code = editor.getValue();
+            const outputDiv = document.getElementById('output-container');
+            
+            outputDiv.innerHTML = `<span class="text-yellow-400">[1] Generating Zero-Knowledge Proof (Client-side)...</span><br>`;
+            
+            // ZK Hash එක ලබා ගැනීම
+            const zkProof = await generateZKProof(code);
+            
+            setTimeout(() => {
+                outputDiv.innerHTML += `<span class="text-indigo-400">🔗 ZK-Proof Hash:</span> <span class="text-xs text-slate-300">${zkProof}</span><br><br>`;
+                outputDiv.innerHTML += `<span class="text-blue-400">[2] Running Local AI Refactoring Engine...</span><br>`;
+            }, 800);
+
+            setTimeout(() => {
+                outputDiv.innerHTML += `<span class="text-emerald-400">[3] Success! Modernized Code:</span><br><br>`;
+                outputDiv.innerHTML += `<pre class="text-slate-200">const modernFunction = () => {\n    const x = 10;\n    console.log(\`Value: \${x}\`);\n};</pre>`;
+            }, 1600);
+        }
+    </script>
+</body>
+</html>
