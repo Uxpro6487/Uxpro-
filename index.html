@@ -228,7 +228,6 @@
                 // Convert except Exception, e to except Exception as e
                 refactored = refactored.replace(/except\s+([A-Za-z_][A-Za-z0-9_]*),\s*([A-Za-z_][A-Za-z0-9_]*):/g, 'except $1 as $2:');
 
-                // Modernize file opening using pathlib or context managers if standard open used
                 if (refactored.includes('f = open(')) {
                     refactored = "from pathlib import Path\n\n" + refactored;
                     refactored = refactored.replace(/f\s*=\s*open\(([^,]+),\s*['"]r['"]\)/g, '# Using modern Pathlib\n            file_path = Path($1)\n            content = file_path.read_text(encoding="utf-8")');
@@ -236,7 +235,6 @@
                     refactored = refactored.replace(/f\.close\(\)/g, '# Auto-closed via pathlib');
                 }
 
-                // If general generic cleanup is needed
                 if (!refactored.includes('from pathlib import Path') && code.includes('open(')) {
                     refactored = "import os\nfrom pathlib import Path\n\n" + refactored;
                 }
@@ -317,7 +315,7 @@
                         <span class="font-semibold text-emerald-400 uppercase">${item.language}</span>
                         <span>${item.date}</span>
                     </div>
-                    <pre class="text-xs text-slate-300 font-mono bg-slate-900/80 p-2.5 rounded-lg overflow-x-auto max-h-24">${escapeHtml(item.legacyCode)}</pre>
+                    <pre class="text-xs text-slate-300 font-mono bg-slate-900/80 p-2.5 rounded-xl overflow-x-auto max-h-24">${escapeHtml(item.legacyCode)}</pre>
                     <div class="flex justify-end gap-2 mt-1">
                         <button onclick="restoreHistory(${item.id})" class="text-xs bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold px-3 py-1.5 rounded-lg transition cursor-pointer">Restore</button>
                     </div>
