@@ -54,12 +54,13 @@
                     <button onclick="switchTool('markdown')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">📝 Markdown Live Preview</button>
                     <button onclick="switchTool('uuid')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🔑 UUID & Hash Generator</button>
                     <button onclick="switchTool('regex')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🔍 Regex Tester</button>
-                    <div class="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-t border-b border-slate-800 mt-1">Advanced Utilities</div>
+                    <div class="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-t border-b border-slate-800 mt-1">Advanced & Media</div>
                     <button onclick="switchTool('sql')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🗄️ SQL Formatter</button>
                     <button onclick="switchTool('cron')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">⏱️ Cron Expression Parser</button>
                     <button onclick="switchTool('color')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🎨 Color Picker & Palette</button>
                     <button onclick="switchTool('url')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🌐 URL Encoder / Decoder</button>
                     <button onclick="switchTool('qr')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">📱 QR Code Generator</button>
+                    <button onclick="switchTool('wallpaper')" class="w-full text-left px-4 py-2.5 text-xs text-emerald-400 font-bold hover:bg-slate-800/80 transition flex items-center gap-2 cursor-pointer">🖼️ Wallpaper Hub</button>
                 </div>
             </div>
         </header>
@@ -99,6 +100,13 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div onclick="enterSandbox('wallpaper')" class="bg-slate-900/50 backdrop-blur-md border border-emerald-500/40 p-5 rounded-3xl hover:border-emerald-500 transition duration-300 cursor-pointer flex flex-col justify-between shadow-lg shadow-emerald-500/5">
+                    <div>
+                        <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-3 text-base">🖼️</div>
+                        <h3 class="text-sm font-bold text-white mb-1">Wallpaper Hub</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Upload and download HD wallpapers easily.</p>
+                    </div>
+                </div>
                 <div onclick="enterSandbox('refactor')" class="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 p-5 rounded-3xl hover:border-emerald-500/30 transition duration-300 cursor-pointer flex flex-col justify-between">
                     <div>
                         <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-3 text-base">⚡</div>
@@ -222,12 +230,13 @@
                     <button onclick="switchTool('markdown')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">📝 Markdown Live Preview</button>
                     <button onclick="switchTool('uuid')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🔑 UUID & Hash Generator</button>
                     <button onclick="switchTool('regex')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🔍 Regex Tester</button>
-                    <div class="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-t border-b border-slate-800 mt-1">Advanced Utilities</div>
+                    <div class="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-t border-b border-slate-800 mt-1">Advanced & Media</div>
                     <button onclick="switchTool('sql')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🗄️ SQL Formatter</button>
                     <button onclick="switchTool('cron')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">⏱️ Cron Expression Parser</button>
                     <button onclick="switchTool('color')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🎨 Color Picker & Palette</button>
                     <button onclick="switchTool('url')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🌐 URL Encoder / Decoder</button>
                     <button onclick="switchTool('qr')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">📱 QR Code Generator</button>
+                    <button onclick="switchTool('wallpaper')" class="w-full text-left px-4 py-2.5 text-xs text-emerald-400 font-bold hover:bg-slate-800/80 transition flex items-center gap-2 cursor-pointer">🖼️ Wallpaper Hub</button>
                 </div>
                 <button onclick="toggleHistoryModal()" class="text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3.5 py-1.5 rounded-xl transition cursor-pointer flex items-center gap-1.5">
                     📜 History
@@ -235,9 +244,9 @@
             </div>
         </header>
 
-        <main class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 p-4 sm:p-6 max-w-[1600px] w-full mx-auto">
+        <main id="main-content-area" class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 p-4 sm:p-6 max-w-[1600px] w-full mx-auto">
             <!-- Left Panel / Input -->
-            <div class="flex flex-col bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 overflow-hidden shadow-2xl">
+            <div id="left-panel-container" class="flex flex-col bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 overflow-hidden shadow-2xl">
                 <div class="bg-slate-900/80 border-b border-slate-800 px-4 py-3 flex justify-between items-center">
                     <div id="input-header-label" class="flex items-center space-x-3">
                         <span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
@@ -273,7 +282,7 @@
             </div>
 
             <!-- Right Panel / Output -->
-            <div class="flex flex-col bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 overflow-hidden shadow-2xl">
+            <div id="right-panel-container" class="flex flex-col bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 overflow-hidden shadow-2xl">
                 <div class="bg-slate-900/80 border-b border-slate-800 px-4 py-3 flex justify-between items-center">
                     <span id="output-header-label" class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
                         <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
@@ -330,10 +339,63 @@
             const outputLabel = document.getElementById('output-header-label');
             const codeInput = document.getElementById('code-input');
             const actionBtn = document.getElementById('action-btn');
+            const mainContainer = document.getElementById('main-content-area');
+
+            // Handle Wallpaper Hub separately (Full width layout)
+            if (tool === 'wallpaper') {
+                titleElem.innerText = "Wallpaper Hub & Download Station";
+                mainContainer.className = "flex-1 flex flex-col p-4 sm:p-6 max-w-[1600px] w-full mx-auto";
+                mainContainer.innerHTML = `
+                    <div class="bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 p-6 shadow-2xl flex flex-col gap-6">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-slate-800">
+                            <div>
+                                <h2 class="text-lg font-bold text-white flex items-center gap-2">🖼️ HD Wallpaper Gallery</h2>
+                                <p class="text-slate-400 text-xs mt-1">Upload your high-resolution images or download existing wallpapers.</p>
+                            </div>
+                            <label class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs px-5 py-2.5 rounded-xl transition cursor-pointer shadow-md shadow-emerald-600/20 flex items-center gap-2">
+                                <span>📤 Upload Wallpaper</span>
+                                <input type="file" id="wallpaper-upload-input" accept="image/*" class="hidden" onchange="handleWallpaperUpload(event)">
+                            </label>
+                        </div>
+                        <div id="wallpaper-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            <!-- Wallpapers will render here -->
+                        </div>
+                    </div>
+                `;
+                renderWallpapers();
+                return;
+            }
+
+            // Restore normal two-column layout for other tools if coming from wallpaper tool
+            if (!document.getElementById('left-panel-container')) {
+                mainContainer.className = "flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 p-4 sm:p-6 max-w-[1600px] w-full mx-auto";
+                mainContainer.innerHTML = `
+                    <div id="left-panel-container" class="flex flex-col bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 overflow-hidden shadow-2xl">
+                        <div class="bg-slate-900/80 border-b border-slate-800 px-4 py-3 flex justify-between items-center">
+                            <div id="input-header-label" class="flex items-center space-x-3"></div>
+                            <button id="action-btn" onclick="executeCurrentTool()" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs px-4 py-2 rounded-xl transition cursor-pointer shadow-md shadow-emerald-600/20"></button>
+                        </div>
+                        <textarea id="code-input" class="flex-1 w-full h-[400px] p-4 bg-slate-950/50 text-slate-200 font-mono text-sm resize-none focus:outline-none leading-relaxed" spellcheck="false"></textarea>
+                    </div>
+                    <div id="right-panel-container" class="flex flex-col bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 overflow-hidden shadow-2xl">
+                        <div class="bg-slate-900/80 border-b border-slate-800 px-4 py-3 flex justify-between items-center">
+                            <span id="output-header-label" class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"></span>
+                            <button onclick="copyOutputCode()" id="copy-btn" class="hidden bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs px-3 py-1.5 rounded-xl transition cursor-pointer">Copy Code</button>
+                        </div>
+                        <div id="output-container" class="flex-1 p-4 font-mono text-sm text-slate-300 bg-slate-950/70 overflow-y-auto leading-relaxed flex flex-col items-center justify-center"></div>
+                    </div>
+                `;
+            }
+
+            // Re-assign references after potential DOM reset
+            const inputLbl = document.getElementById('input-header-label');
+            const outputLbl = document.getElementById('output-header-label');
+            const codeInp = document.getElementById('code-input');
+            const actBtn = document.getElementById('action-btn');
 
             if (tool === 'refactor') {
                 titleElem.innerText = "Code Refactor & ZK Audit";
-                inputLabel.innerHTML = `
+                inputLbl.innerHTML = `
                     <span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
                         <span class="w-2 h-2 rounded-full bg-amber-400"></span> Legacy Code
                     </span>
@@ -342,90 +404,141 @@
                         <option value="javascript">JavaScript</option>
                         <option value="cobol">COBOL</option>
                     </select>`;
-                outputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Refactored & ZK-Audited Output`;
-                actionBtn.innerText = "Refactor & Audit";
-                codeInput.value = `class LogProcessor:\n    def __init__(self, log_file_path):\n        self.log_file_path = log_file_path\n\n    def load_logs(self):\n        print "[*] Loading log file from: " + self.log_file_path`;
+                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Refactored & ZK-Audited Output`;
+                actBtn.innerText = "Refactor & Audit";
+                codeInp.value = `class LogProcessor:\n    def __init__(self, log_file_path):\n        self.log_file_path = log_file_path\n\n    def load_logs(self):\n        print "[*] Loading log file from: " + self.log_file_path`;
             } else if (tool === 'json') {
                 titleElem.innerText = "JSON Formatter & Validator";
-                inputLabel.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Raw JSON Input</span>`;
-                outputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Formatted & Validated JSON`;
-                actionBtn.innerText = "Format JSON";
-                codeInput.value = `{"name":"UXPRO","version":1.5,"features":["ZK-Proofs","Refactor","Local History"],"active":true}`;
+                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Raw JSON Input</span>`;
+                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Formatted & Validated JSON`;
+                actBtn.innerText = "Format JSON";
+                codeInp.value = `{"name":"UXPRO","version":1.5,"features":["ZK-Proofs","Refactor","Local History"],"active":true}`;
             } else if (tool === 'base64') {
                 titleElem.innerText = "Base64 Encoder / Decoder";
-                inputLabel.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Plain Text</span>`;
-                outputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Base64 Output`;
-                actionBtn.innerText = "Encode Base64";
-                codeInput.value = `Hello, UXPRO Security Sandbox!`;
+                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Plain Text</span>`;
+                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Base64 Output`;
+                actBtn.innerText = "Encode Base64";
+                codeInp.value = `Hello, UXPRO Security Sandbox!`;
             } else if (tool === 'css') {
                 titleElem.innerText = "CSS Shadow Generator";
-                inputLabel.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Shadow Settings (X, Y, Blur, Spread, Color)</span>`;
-                outputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Generated CSS & Preview`;
-                actionBtn.innerText = "Generate CSS";
-                codeInput.value = `0 10px 25px -5px rgba(16, 185, 129, 0.4)`;
+                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Shadow Settings (X, Y, Blur, Spread, Color)</span>`;
+                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Generated CSS & Preview`;
+                actBtn.innerText = "Generate CSS";
+                codeInp.value = `0 10px 25px -5px rgba(16, 185, 129, 0.4)`;
             } else if (tool === 'jwt') {
                 titleElem.innerText = "JWT Debugger & Decoder";
-                inputLabel.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Paste JWT Token Here</span>`;
-                outputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Decoded Header & Payload`;
-                actionBtn.innerText = "Decode JWT";
-                codeInput.value = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlVYUFJPIFVzZXIiLCJpYXQiOjE2MTYyMzkwMjJ9.signature_placeholder`;
+                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Paste JWT Token Here</span>`;
+                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Decoded Header & Payload`;
+                actBtn.innerText = "Decode JWT";
+                codeInp.value = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlVYUFJPIFVzZXIiLCJpYXQiOjE2MTYyMzkwMjJ9.signature_placeholder`;
             } else if (tool === 'markdown') {
                 titleElem.innerText = "Markdown Live Previewer";
-                inputLabel.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Markdown Input</span>`;
-                outputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Rendered Preview`;
-                actionBtn.innerText = "Render Markdown";
-                codeInput.value = `# Welcome to UXPRO\n\nThis is a **privacy-first** markdown snippet.\n\n- Zero Knowledge Audits\n- Client-side execution\n- Fully Responsive`;
+                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Markdown Input</span>`;
+                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Rendered Preview`;
+                actBtn.innerText = "Render Markdown";
+                codeInp.value = `# Welcome to UXPRO\n\nThis is a **privacy-first** markdown snippet.\n\n- Zero Knowledge Audits\n- Client-side execution\n- Fully Responsive`;
             } else if (tool === 'uuid') {
                 titleElem.innerText = "UUID & Hash Generator";
-                inputLabel.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Text to Hash</span>`;
-                outputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Generated UUID & Hashes`;
-                actionBtn.innerText = "Generate Hashes";
-                codeInput.value = `UXPRO Security Sandbox 2026`;
+                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Text to Hash</span>`;
+                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Generated UUID & Hashes`;
+                actBtn.innerText = "Generate Hashes";
+                codeInp.value = `UXPRO Security Sandbox 2026`;
             } else if (tool === 'regex') {
                 titleElem.innerText = "Regex Tester";
-                inputLabel.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Format: /pattern/flags || test_string</span>`;
-                outputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Match Results`;
-                actionBtn.innerText = "Test Regex";
-                codeInput.value = `/\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b/g || Contact us at support@uxpro.io or admin@sandbox.dev`;
+                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Format: /pattern/flags || test_string</span>`;
+                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Match Results`;
+                actBtn.innerText = "Test Regex";
+                codeInp.value = `/\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b/g || Contact us at support@uxpro.io or admin@sandbox.dev`;
             } else if (tool === 'sql') {
                 titleElem.innerText = "SQL Formatter";
-                inputLabel.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Raw SQL Query</span>`;
-                outputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Formatted SQL Query`;
-                actionBtn.innerText = "Format SQL";
-                codeInput.value = `select id, name, email from users where status = 'active' order by created_at desc;`;
+                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Raw SQL Query</span>`;
+                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Formatted SQL Query`;
+                actBtn.innerText = "Format SQL";
+                codeInp.value = `select id, name, email from users where status = 'active' order by created_at desc;`;
             } else if (tool === 'cron') {
                 titleElem.innerText = "Cron Expression Parser";
-                inputLabel.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Cron Expression (e.g. * * * * *)</span>`;
-                outputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Parsed Schedule Description`;
-                actionBtn.innerText = "Parse Cron";
-                codeInput.value = `0 12 * * *`;
+                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Cron Expression (e.g. * * * * *)</span>`;
+                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Parsed Schedule Description`;
+                actBtn.innerText = "Parse Cron";
+                codeInp.value = `0 12 * * *`;
             } else if (tool === 'color') {
                 titleElem.innerText = "Color Picker & Palette Generator";
-                inputLabel.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Enter HEX Code (e.g. #10B981)</span>`;
-                outputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Color Conversions & Preview`;
-                actionBtn.innerText = "Generate Palette";
-                codeInput.value = `#10B981`;
+                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Enter HEX Code (e.g. #10B981)</span>`;
+                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Color Conversions & Preview`;
+                actBtn.innerText = "Generate Palette";
+                codeInp.value = `#10B981`;
             } else if (tool === 'url') {
                 titleElem.innerText = "URL Encoder / Decoder";
-                inputLabel.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> URL String</span>`;
-                outputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Encoded / Decoded URL`;
-                actionBtn.innerText = "Process URL";
-                codeInput.value = `https://uxpro.io/search?q=developer sandbox & tools`;
+                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> URL String</span>`;
+                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Encoded / Decoded URL`;
+                actBtn.innerText = "Process URL";
+                codeInp.value = `https://uxpro.io/search?q=developer sandbox & tools`;
             } else if (tool === 'qr') {
                 titleElem.innerText = "QR Code Generator";
-                inputLabel.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Text or URL for QR Code</span>`;
-                outputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> QR Code Visualization`;
-                actionBtn.innerText = "Generate QR";
-                codeInput.value = `https://uxpro.io`;
+                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Text or URL for QR Code</span>`;
+                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> QR Code Visualization`;
+                actBtn.innerText = "Generate QR";
+                codeInp.value = `https://uxpro.io`;
             }
 
-            document.getElementById('output-container').innerHTML = `<span class="text-slate-500">// Output results will appear here...</span>`;
-            document.getElementById('copy-btn').classList.add('hidden');
+            if (tool !== 'wallpaper') {
+                document.getElementById('output-container').innerHTML = `<span class="text-slate-500">// Output results will appear here...</span>`;
+                document.getElementById('copy-btn').classList.add('hidden');
+            }
         }
 
         function goHome() {
             document.getElementById('app-view').classList.add('hidden');
             document.getElementById('welcome-view').classList.remove('hidden');
+        }
+
+        // Wallpaper Management Logic using LocalStorage
+        function handleWallpaperUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64Image = e.target.result;
+                let wallpapers = JSON.parse(localStorage.getItem('uxpro_wallpapers')) || [];
+                wallpapers.unshift({
+                    id: Date.now(),
+                    name: file.name.substring(0, 20),
+                    url: base64Image,
+                    date: new Date().toLocaleDateString()
+                });
+                localStorage.setItem('uxpro_wallpapers', JSON.stringify(wallpapers));
+                renderWallpapers();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function renderWallpapers() {
+            const grid = document.getElementById('wallpaper-grid');
+            if (!grid) return;
+            let wallpapers = JSON.parse(localStorage.getItem('uxpro_wallpapers')) || [];
+            
+            if (wallpapers.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-slate-500 text-xs">
+                        No wallpapers uploaded yet. Click upload above to add your first background!
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = wallpapers.map(wp => `
+                <div class="bg-slate-950/80 border border-slate-800 rounded-2xl overflow-hidden flex flex-col group shadow-lg">
+                    <div class="h-40 overflow-hidden relative bg-slate-900">
+                        <img src="${wp.url}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <div class="p-3 flex justify-between items-center bg-slate-900/90 border-t border-slate-800">
+                        <span class="text-xs font-medium text-slate-300 truncate max-w-[120px]">${wp.name}</span>
+                        <a href="${wp.url}" download="wallpaper_${wp.id}.png" class="bg-emerald-600/20 hover:bg-emerald-600 text-emerald-400 hover:text-slate-950 font-bold text-[11px] px-3 py-1.5 rounded-xl transition flex items-center gap-1 cursor-pointer">
+                            ⬇️ Download
+                        </a>
+                    </div>
+                </div>
+            `).join('');
         }
 
         async function generateZKProof(code) {
@@ -561,7 +674,6 @@
                         </button>
                     </div>`;
                 
-                // Real QR code generation using qrcode.js library
                 setTimeout(() => {
                     const container = document.getElementById("qrcode-canvas");
                     if (container) {
@@ -577,7 +689,7 @@
                     }
                 }, 50);
 
-                copyBtn.classList.add('hidden'); // Hide top copy button for QR tool
+                copyBtn.classList.add('hidden');
             }
         }
 
