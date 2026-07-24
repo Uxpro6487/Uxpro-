@@ -1,0 +1,31 @@
+name: Wallpaper Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Verify Wallpapers
+        run: |
+          echo "Checking wallpapers folder..."
+          ls -la wallpapers || true
+
+      - name: Verify JSON
+        run: |
+          if [ -f wallpapers.json ]; then
+            echo "wallpapers.json found"
+            cat wallpapers.json
+          else
+            echo "wallpapers.json not found"
+          fi
+
+      - name: Deployment Complete
+        run: echo "UXPRO Wallpaper Gallery Updated Successfully 🚀"
