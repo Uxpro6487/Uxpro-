@@ -59,7 +59,7 @@
             <div class="flex flex-wrap justify-center gap-2.5 mb-6">
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-slate-300 text-xs font-medium">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    VERSION V2.0 · CINESUBZ STYLE MODAL
+                    VERSION V2.1 · POSTERS & CINESUBZ STYLE MODAL
                 </div>
             </div>
 
@@ -158,12 +158,10 @@
     <!-- Cinesubz Style Detail Modal -->
     <div id="movie-detail-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-slate-900 border border-purple-500/40 rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative flex flex-col gap-5 animate-in fade-in zoom-in-95 duration-200">
-            <button onclick="closeMovieModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center text-xs font-bold transition cursor-pointer">✕</button>
+            <button onclick="closeMovieModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center text-xs font-bold transition cursor-pointer z-10">✕</button>
             
             <div class="flex items-start gap-4">
-                <div class="w-24 h-36 bg-slate-950 rounded-xl border border-slate-800 flex items-center justify-center p-2 text-center text-xs font-black text-purple-400 shrink-0 shadow-inner" id="modal-poster-text">
-                    POSTER
-                </div>
+                <img id="modal-poster-img" src="" alt="Poster" class="w-24 h-36 object-cover rounded-xl border border-slate-800 shrink-0 shadow-inner">
                 <div class="flex flex-col gap-2 flex-1">
                     <span id="modal-type-badge" class="text-[10px] uppercase tracking-wider font-extrabold bg-purple-500/20 text-purple-300 px-2.5 py-1 rounded-full w-max border border-purple-500/30">Movie</span>
                     <h2 id="modal-title" class="text-xl sm:text-2xl font-black text-white leading-tight">Movie Title</h2>
@@ -199,28 +197,40 @@
         let massiveCatalog = [];
         let activeModalMovie = null;
 
-        // Safe 1000+ Database Generator
+        // Safe 1000+ Database Generator with Unsplash Cinematic Posters
         function generateMassiveCatalog() {
             if (massiveCatalog.length > 0) return;
-            const sampleTitles = [
-                "Interstellar", "Breaking Bad", "Avatar: The Way of Water", "Inception", "The Dark Knight", 
-                "Stranger Things", "Game of Thrones", "Oppenheimer", "Spider-Man: Across the Spider-Verse", "The Matrix",
-                "Peaky Blinders", "The Boys", "Attack on Titan", "Arcane", "Loki", "Succession", "The Mandalorian",
-                "John Wick", "Dune: Part Two", "The Batman", "Gladiator", "The Witcher", "Money Heist", "Dark",
-                "Sherlock", "Squid Game", "Narcos", "Viking", "The Queen's Gambit", "Chernobyl", "Better Call Saul"
+            const sampleMovies = [
+                { title: "Interstellar", img: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=400&q=80" },
+                { title: "Breaking Bad", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&q=80" },
+                { title: "Avatar: The Way of Water", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&q=80" },
+                { title: "Inception", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400&q=80" },
+                { title: "The Dark Knight", img: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&q=80" },
+                { title: "Stranger Things", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&q=80" },
+                { title: "Game of Thrones", img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=400&q=80" },
+                { title: "Oppenheimer", img: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=400&q=80" },
+                { title: "Spider-Man", img: "https://images.unsplash.com/photo-1635805737707-575885ab0820?w=400&q=80" },
+                { title: "The Matrix", img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&q=80" },
+                { title: "Peaky Blinders", img: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=400&q=80" },
+                { title: "The Boys", img: "https://images.unsplash.com/photo-1563089145-599997674d42?w=400&q=80" },
+                { title: "Attack on Titan", img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80" },
+                { title: "Arcane", img: "https://images.unsplash.com/photo-1563089145-599997674d42?w=400&q=80" },
+                { title: "Loki", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&q=80" }
             ];
+            
             const genresList = ['Action', 'Sci-Fi', 'Drama', 'Crime', 'Thriller', 'Animation', 'Fantasy', 'Horror'];
             const typesList = ['Movie', 'TV Series'];
             
             for (let i = 1; i <= 1000; i++) {
-                const baseTitle = sampleTitles[(i - 1) % sampleTitles.length];
+                const sample = sampleMovies[(i - 1) % sampleMovies.length];
                 massiveCatalog.push({
                     id: i,
-                    title: `${baseTitle} ${i > sampleTitles.length ? '#' + i : ''}`,
+                    title: `${sample.title} ${i > sampleMovies.length ? '#' + i : ''}`,
                     type: typesList[i % typesList.length],
                     genre: genresList[i % genresList.length],
                     year: 2010 + (i % 16),
                     rating: (7.0 + ((i % 25) / 10)).toFixed(1),
+                    poster: sample.img,
                     synopsis: `An extraordinary ${genresList[i % genresList.length].toLowerCase()} masterpiece that takes viewers on an unforgettable journey through high-stakes drama and thrilling sequences.`
                 });
             }
@@ -454,10 +464,11 @@
             }
             grid.innerHTML = items.map(item => `
                 <div onclick='openMovieModal(${JSON.stringify(item)})' class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden flex flex-col group shadow-md hover:border-purple-500/50 transition cursor-pointer">
-                    <div class="h-36 bg-slate-900 relative flex items-center justify-center overflow-hidden p-2 text-center">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10"></div>
-                        <span class="text-xs font-black text-slate-300 z-20 group-hover:scale-105 transition">${item.title}</span>
+                    <div class="h-44 bg-slate-900 relative flex items-center justify-center overflow-hidden">
+                        <img src="${item.poster}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
                         <span class="absolute top-2 right-2 z-20 bg-purple-600/90 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow">⭐ ${item.rating}</span>
+                        <span class="absolute bottom-2 left-2 z-20 text-xs font-black text-white truncate max-w-[85%] drop-shadow">${item.title}</span>
                     </div>
                     <div class="p-3 flex flex-col gap-2 bg-slate-950">
                         <div class="flex justify-between items-center text-[10px] text-slate-400">
@@ -474,7 +485,7 @@
 
         function openMovieModal(item) {
             activeModalMovie = item;
-            document.getElementById('modal-poster-text').innerText = item.type;
+            document.getElementById('modal-poster-img').src = item.poster;
             document.getElementById('modal-type-badge').innerText = item.type;
             document.getElementById('modal-title').innerText = item.title;
             document.getElementById('modal-year').innerText = item.year;
