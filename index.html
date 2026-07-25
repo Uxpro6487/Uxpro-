@@ -59,7 +59,7 @@
             <div class="flex flex-wrap justify-center gap-2.5 mb-6">
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-slate-300 text-xs font-medium">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    VERSION V1.9 · ACTIVE
+                    VERSION V1.9 · FIXED & ACTIVE
                 </div>
             </div>
 
@@ -158,13 +158,9 @@
     <!-- Scripting -->
     <script>
         let currentTool = 'request';
-        let latestRefactoredCode = "";
-
-        // Generated Database of 1000+ Trending Movies & Series Mock Generator
-        const genresList = ['Action', 'Sci-Fi', 'Drama', 'Crime', 'Thriller', 'Animation', 'Fantasy', 'Horror'];
-        const typesList = ['Movie', 'TV Series'];
         let massiveCatalog = [];
 
+        // Safe 1000+ Database Generator
         function generateMassiveCatalog() {
             if (massiveCatalog.length > 0) return;
             const sampleTitles = [
@@ -174,22 +170,18 @@
                 "John Wick", "Dune: Part Two", "The Batman", "Gladiator", "The Witcher", "Money Heist", "Dark",
                 "Sherlock", "Squid Game", "Narcos", "Viking", "The Queen's Gambit", "Chernobyl", "Better Call Saul"
             ];
+            const genresList = ['Action', 'Sci-Fi', 'Drama', 'Crime', 'Thriller', 'Animation', 'Fantasy', 'Horror'];
+            const typesList = ['Movie', 'TV Series'];
             
             for (let i = 1; i <= 1000; i++) {
                 const baseTitle = sampleTitles[(i - 1) % sampleTitles.length];
-                const type = typesList[i % typesList.length];
-                const genre = genresList[i % genresList.length];
-                const year = 2010 + (i % 16);
-                const rating = (7.0 + ((i % 25) / 10)).toFixed(1);
-                
                 massiveCatalog.push({
                     id: i,
                     title: `${baseTitle} ${i > sampleTitles.length ? '#' + i : ''}`,
-                    type: type,
-                    genre: genre,
-                    year: year,
-                    rating: rating,
-                    poster: `https://images.unsplash.com/photo-${1509198397868-475647b2a1e5}?w=400&auto=format&fit=crop&q=80`
+                    type: typesList[i % typesList.length],
+                    genre: genresList[i % genresList.length],
+                    year: 2010 + (i % 16),
+                    rating: (7.0 + ((i % 25) / 10)).toFixed(1)
                 });
             }
         }
@@ -211,15 +203,19 @@
 
         function enterSandbox(tool = 'request') {
             currentTool = tool;
-            document.getElementById('welcome-view').classList.add('hidden');
-            document.getElementById('app-view').classList.remove('hidden');
+            const welcomeView = document.getElementById('welcome-view');
+            const appView = document.getElementById('app-view');
+            
+            if (welcomeView) welcomeView.classList.add('hidden');
+            if (appView) appView.classList.remove('hidden');
 
             const titleElem = document.getElementById('active-tool-title');
             const mainContainer = document.getElementById('main-content-area');
+            if (!mainContainer) return;
 
             // Handle 1000+ Catalog Hub
             if (tool === 'catalog') {
-                titleElem.innerText = "SL Movies Collective - 1000+ Trending Catalog";
+                if (titleElem) titleElem.innerText = "SL Movies Collective - 1000+ Trending Catalog";
                 mainContainer.className = "flex-1 flex flex-col p-4 sm:p-6 max-w-[1600px] w-full mx-auto gap-6";
                 generateMassiveCatalog();
                 
@@ -252,13 +248,13 @@
                         <div id="catalog-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 max-h-[70vh] overflow-y-auto p-1"></div>
                     </div>
                 `;
-                renderCatalogGrid(massiveCatalog.slice(0, 30)); // Initial render 30 items for smooth load
+                renderCatalogGrid(massiveCatalog.slice(0, 30));
                 return;
             }
 
             // Handle Wallpaper Hub
             if (tool === 'wallpaper') {
-                titleElem.innerText = "Wallpaper Hub & Download Station";
+                if (titleElem) titleElem.innerText = "Wallpaper Hub & Download Station";
                 mainContainer.className = "flex-1 flex flex-col p-4 sm:p-6 max-w-[1600px] w-full mx-auto";
                 mainContainer.innerHTML = `
                     <div class="bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 p-6 shadow-2xl flex flex-col gap-6">
@@ -281,7 +277,7 @@
 
             // Handle Trailers Downloader Hub
             if (tool === 'trailers') {
-                titleElem.innerText = "SL Movies Collective - Trailers Hub & Downloader";
+                if (titleElem) titleElem.innerText = "SL Movies Collective - Trailers Hub & Downloader";
                 mainContainer.className = "flex-1 flex flex-col p-4 sm:p-6 max-w-5xl mx-auto w-full gap-6";
                 mainContainer.innerHTML = `
                     <div class="bg-slate-900/90 backdrop-blur-xl rounded-3xl border border-cyan-500/40 p-6 sm:p-8 shadow-2xl flex flex-col gap-5">
@@ -324,7 +320,7 @@
 
             // Handle Request Hub
             if (tool === 'request') {
-                titleElem.innerText = "SL Movies Collective - Request Hub";
+                if (titleElem) titleElem.innerText = "SL Movies Collective - Request Hub";
                 mainContainer.className = "flex-1 flex flex-col p-4 sm:p-6 max-w-2xl mx-auto w-full justify-center items-center";
                 mainContainer.innerHTML = `
                     <div class="w-full flex flex-col gap-6">
@@ -373,29 +369,32 @@
                 return;
             }
 
-            // Handle Code Refactor & JSON Formatter
+            // Handle Other Tools
+            if (titleElem) titleElem.innerText = tool.toUpperCase() + " Utility Sandbox";
             mainContainer.className = "flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 p-4 sm:p-6 max-w-[1600px] w-full mx-auto";
             mainContainer.innerHTML = `
                 <div class="flex flex-col bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 overflow-hidden shadow-2xl">
                     <div class="bg-slate-900/80 border-b border-slate-800 px-4 py-3 flex justify-between items-center">
-                        <span id="input-header-label" class="text-xs font-semibold text-slate-300">Input</span>
-                        <button onclick="executeCurrentTool()" class="bg-emerald-600 text-slate-950 font-bold text-xs px-4 py-2 rounded-xl cursor-pointer">Process</button>
+                        <span class="text-xs font-semibold text-slate-300">Input</span>
                     </div>
                     <textarea id="code-input" class="flex-1 w-full h-[400px] p-4 bg-slate-950/50 text-slate-200 font-mono text-sm resize-none focus:outline-none"></textarea>
                 </div>
                 <div class="flex flex-col bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 overflow-hidden shadow-2xl">
                     <div class="bg-slate-900/80 border-b border-slate-800 px-4 py-3 flex justify-between items-center">
                         <span class="text-xs font-semibold text-slate-300">Output</span>
-                        <button onclick="copyOutputCode()" class="bg-slate-800 text-slate-200 text-xs px-3 py-1.5 rounded-xl cursor-pointer">Copy</button>
                     </div>
-                    <div id="output-container" class="flex-1 p-4 font-mono text-sm text-slate-300 bg-slate-950/70 overflow-y-auto"></div>
+                    <div id="output-container" class="flex-1 p-4 font-mono text-sm text-slate-300 bg-slate-950/70 overflow-y-auto">Ready.</div>
                 </div>
             `;
         }
 
         function filterCatalog() {
-            const query = document.getElementById('catalog-search').value.toLowerCase();
-            const genre = document.getElementById('catalog-genre').value;
+            const queryElem = document.getElementById('catalog-search');
+            const genreElem = document.getElementById('catalog-genre');
+            if (!queryElem || !genreElem) return;
+
+            const query = queryElem.value.toLowerCase();
+            const genre = genreElem.value;
             
             const filtered = massiveCatalog.filter(item => {
                 const matchesQuery = item.title.toLowerCase().includes(query);
@@ -403,7 +402,7 @@
                 return matchesQuery && matchesGenre;
             });
             
-            renderCatalogGrid(filtered.slice(0, 50)); // Render top 50 matches for performance
+            renderCatalogGrid(filtered.slice(0, 50));
         }
 
         function renderCatalogGrid(items) {
@@ -415,9 +414,9 @@
             }
             grid.innerHTML = items.map(item => `
                 <div class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden flex flex-col group shadow-md hover:border-purple-500/50 transition">
-                    <div class="h-36 bg-slate-900 relative flex items-center justify-center overflow-hidden">
+                    <div class="h-36 bg-slate-900 relative flex items-center justify-center overflow-hidden p-2 text-center">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10"></div>
-                        <span class="text-xs font-black text-slate-300 text-center p-2 z-20 group-hover:scale-105 transition">${item.title}</span>
+                        <span class="text-xs font-black text-slate-300 z-20 group-hover:scale-105 transition">${item.title}</span>
                         <span class="absolute top-2 right-2 z-20 bg-purple-600/90 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow">⭐ ${item.rating}</span>
                     </div>
                     <div class="p-3 flex flex-col gap-2 bg-slate-950">
@@ -434,8 +433,10 @@
         }
 
         function goHome() {
-            document.getElementById('app-view').classList.add('hidden');
-            document.getElementById('welcome-view').classList.remove('hidden');
+            const welcomeView = document.getElementById('welcome-view');
+            const appView = document.getElementById('app-view');
+            if (appView) appView.classList.add('hidden');
+            if (welcomeView) welcomeView.classList.remove('hidden');
         }
 
         function handleWallpaperUpload(event) {
@@ -470,8 +471,11 @@
             const urlInput = document.getElementById('trailer-url-input').value.trim();
             if (!urlInput) { alert('URL එකක් දෙන්න!'); return; }
             const encodedUrl = encodeURIComponent(urlInput);
+            const videoIdMatch = urlInput.match(/(?:v=|\/)([0-9A-Za-z_-]{11}).*/);
+            const videoId = videoIdMatch ? videoIdMatch[1] : '';
+            
             document.getElementById('dl-1080p').href = `https://en.savefrom.net/1-youtube-downloader-40/?url=${encodedUrl}`;
-            document.getElementById('dl-720p').href = `https://www.y2mate.com/youtube/${urlInput.split('v=')[1] || ''}`;
+            document.getElementById('dl-720p').href = videoId ? `https://www.y2mate.com/youtube/${videoId}` : `https://www.y2mate.com`;
             document.getElementById('dl-audio').href = `https://en.savefrom.net/1-youtube-downloader-40/?url=${encodedUrl}`;
             document.getElementById('trailer-result-box').classList.remove('hidden');
         }
@@ -493,10 +497,6 @@
         function copyMessage() {
             navigator.clipboard.writeText(document.getElementById('formatted-message-text').innerText);
             alert('Copied successfully!');
-        }
-
-        async function executeCurrentTool() {
-            // Placeholder for tools
         }
     </script>
 </body>
