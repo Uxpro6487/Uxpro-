@@ -6,14 +6,11 @@
     <title>Uxpro - Privacy-First Developer Sandbox & Tools</title>
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- QRCode.js Library for real QR code generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #090d16; }
+        ::-webkit-scrollbar-track { background: #07090e; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: #334155; }
-        .glow-effect { box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.12); }
     </style>
 </head>
 <body class="bg-[#07090e] text-slate-100 font-sans min-h-screen flex flex-col selection:bg-emerald-500 selection:text-slate-950">
@@ -50,18 +47,6 @@
                     <div class="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-t border-b border-slate-800 mt-1">Developer Suite</div>
                     <button onclick="switchTool('refactor')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">⚡ Code Refactor & ZK</button>
                     <button onclick="switchTool('json')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">📦 JSON Formatter</button>
-                    <button onclick="switchTool('base64')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🔤 Base64 Encoder</button>
-                    <button onclick="switchTool('css')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🎨 CSS Shadow Generator</button>
-                    <button onclick="switchTool('jwt')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🔐 JWT Debugger</button>
-                    <button onclick="switchTool('markdown')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">📝 Markdown Live Preview</button>
-                    <button onclick="switchTool('uuid')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🔑 UUID & Hash Generator</button>
-                    <button onclick="switchTool('regex')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🔍 Regex Tester</button>
-                    <div class="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-t border-b border-slate-800 mt-1">Advanced & Media</div>
-                    <button onclick="switchTool('sql')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🗄️ SQL Formatter</button>
-                    <button onclick="switchTool('cron')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">⏱️ Cron Expression Parser</button>
-                    <button onclick="switchTool('color')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🎨 Color Picker & Palette</button>
-                    <button onclick="switchTool('url')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🌐 URL Encoder / Decoder</button>
-                    <button onclick="switchTool('qr')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">📱 QR Code Generator</button>
                     <button onclick="switchTool('wallpaper')" class="w-full text-left px-4 py-2.5 text-xs text-emerald-400 font-bold hover:bg-slate-800/80 transition flex items-center gap-2 cursor-pointer">🖼️ Wallpaper Hub</button>
                 </div>
             </div>
@@ -72,7 +57,7 @@
             <div class="flex flex-wrap justify-center gap-2.5 mb-6">
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-slate-300 text-xs font-medium">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    VERSION V1.5 · ACTIVE
+                    VERSION V1.6 · ACTIVE
                 </div>
             </div>
 
@@ -80,16 +65,13 @@
                 UXPRO <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">ULTIMATE SUITE</span>
             </h1>
             <p class="text-slate-400 text-base sm:text-lg max-w-xl mb-8 leading-relaxed">
-                Your privacy-first, client-side utility toolkit equipped with advanced developer, DevOps, and design tools.
+                Your privacy-first, client-side utility toolkit equipped with advanced developer and media tools.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 w-full max-w-md justify-center">
                 <button onclick="enterSandbox('request')" class="flex-1 bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-400 hover:to-rose-400 text-slate-950 font-bold px-6 py-3.5 rounded-2xl transition duration-300 cursor-pointer shadow-lg shadow-red-500/25 flex items-center justify-center gap-2">
                     <span>🎬 Request Movie</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
-                </button>
-                <button onclick="toggleHistoryModal()" class="flex-1 bg-slate-900/80 hover:bg-slate-900 border border-slate-800 text-slate-300 font-semibold px-6 py-3.5 rounded-2xl transition duration-300 cursor-pointer flex items-center justify-center gap-2">
-                    📜 Local History
                 </button>
             </div>
         </div>
@@ -106,7 +88,7 @@
                     <div>
                         <div class="w-9 h-9 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 mb-3 text-base">🎬</div>
                         <h3 class="text-sm font-bold text-white mb-1">Movie Request</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Request movies & series directly to WhatsApp.</p>
+                        <p class="text-slate-400 text-xs leading-relaxed">Request movies & series for WhatsApp group via clean UI.</p>
                     </div>
                 </div>
                 <div onclick="enterSandbox('wallpaper')" class="bg-slate-900/50 backdrop-blur-md border border-emerald-500/40 p-5 rounded-3xl hover:border-emerald-500 transition duration-300 cursor-pointer flex flex-col justify-between shadow-lg shadow-emerald-500/5">
@@ -130,83 +112,6 @@
                         <p class="text-slate-400 text-xs leading-relaxed">Clean up, beautify, and validate complex JSON strings.</p>
                     </div>
                 </div>
-                <div onclick="enterSandbox('base64')" class="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 p-5 rounded-3xl hover:border-emerald-500/30 transition duration-300 cursor-pointer flex flex-col justify-between">
-                    <div>
-                        <div class="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-3 text-base">🔤</div>
-                        <h3 class="text-sm font-bold text-white mb-1">Base64 Utility</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Quickly encode or decode text with one click.</p>
-                    </div>
-                </div>
-                <div onclick="enterSandbox('css')" class="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 p-5 rounded-3xl hover:border-emerald-500/30 transition duration-300 cursor-pointer flex flex-col justify-between">
-                    <div>
-                        <div class="w-9 h-9 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-3 text-base">🎨</div>
-                        <h3 class="text-sm font-bold text-white mb-1">CSS Shadow</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Design custom shadows and preview live.</p>
-                    </div>
-                </div>
-                <div onclick="enterSandbox('jwt')" class="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 p-5 rounded-3xl hover:border-emerald-500/30 transition duration-300 cursor-pointer flex flex-col justify-between">
-                    <div>
-                        <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-3 text-base">🔐</div>
-                        <h3 class="text-sm font-bold text-white mb-1">JWT Debugger</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Inspect header, payload, and claims locally.</p>
-                    </div>
-                </div>
-                <div onclick="enterSandbox('markdown')" class="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 p-5 rounded-3xl hover:border-emerald-500/30 transition duration-300 cursor-pointer flex flex-col justify-between">
-                    <div>
-                        <div class="w-9 h-9 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-3 text-base">📝</div>
-                        <h3 class="text-sm font-bold text-white mb-1">Markdown Preview</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Real-time lightweight markdown layout preview.</p>
-                    </div>
-                </div>
-                <div onclick="enterSandbox('uuid')" class="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 p-5 rounded-3xl hover:border-emerald-500/30 transition duration-300 cursor-pointer flex flex-col justify-between">
-                    <div>
-                        <div class="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-3 text-base">🔑</div>
-                        <h3 class="text-sm font-bold text-white mb-1">UUID & Hashes</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Generate UUIDs, MD5 and SHA-256 instantly.</p>
-                    </div>
-                </div>
-                <div onclick="enterSandbox('regex')" class="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 p-5 rounded-3xl hover:border-emerald-500/30 transition duration-300 cursor-pointer flex flex-col justify-between">
-                    <div>
-                        <div class="w-9 h-9 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 mb-3 text-base">🔍</div>
-                        <h3 class="text-sm font-bold text-white mb-1">Regex Tester</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Test patterns against sample test strings.</p>
-                    </div>
-                </div>
-                <div onclick="enterSandbox('sql')" class="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 p-5 rounded-3xl hover:border-emerald-500/30 transition duration-300 cursor-pointer flex flex-col justify-between">
-                    <div>
-                        <div class="w-9 h-9 rounded-xl bg-teal-600/10 border border-teal-600/20 flex items-center justify-center text-teal-400 mb-3 text-base">🗄️</div>
-                        <h3 class="text-sm font-bold text-white mb-1">SQL Formatter</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Beautify and clean up raw database queries.</p>
-                    </div>
-                </div>
-                <div onclick="enterSandbox('cron')" class="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 p-5 rounded-3xl hover:border-emerald-500/30 transition duration-300 cursor-pointer flex flex-col justify-between">
-                    <div>
-                        <div class="w-9 h-9 rounded-xl bg-emerald-600/10 border border-emerald-600/20 flex items-center justify-center text-emerald-400 mb-3 text-base">⏱️</div>
-                        <h3 class="text-sm font-bold text-white mb-1">Cron Parser</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Interpret time schedule expressions easily.</p>
-                    </div>
-                </div>
-                <div onclick="enterSandbox('color')" class="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 p-5 rounded-3xl hover:border-emerald-500/30 transition duration-300 cursor-pointer flex flex-col justify-between">
-                    <div>
-                        <div class="w-9 h-9 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400 mb-3 text-base">🎨</div>
-                        <h3 class="text-sm font-bold text-white mb-1">Color Picker</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Convert HEX, RGB, HSL and palettes.</p>
-                    </div>
-                </div>
-                <div onclick="enterSandbox('url')" class="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 p-5 rounded-3xl hover:border-emerald-500/30 transition duration-300 cursor-pointer flex flex-col justify-between">
-                    <div>
-                        <div class="w-9 h-9 rounded-xl bg-blue-600/10 border border-blue-600/20 flex items-center justify-center text-blue-400 mb-3 text-base">🌐</div>
-                        <h3 class="text-sm font-bold text-white mb-1">URL Encoder</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Safe encoding and decoding of links.</p>
-                    </div>
-                </div>
-                <div onclick="enterSandbox('qr')" class="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 p-5 rounded-3xl hover:border-emerald-500/30 transition duration-300 cursor-pointer flex flex-col justify-between">
-                    <div>
-                        <div class="w-9 h-9 rounded-xl bg-cyan-600/10 border border-cyan-600/20 flex items-center justify-center text-cyan-400 mb-3 text-base">📱</div>
-                        <h3 class="text-sm font-bold text-white mb-1">QR Generator</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Generate scannable QR codes instantly.</p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -221,11 +126,10 @@
                 </button>
                 <div class="h-4 w-px bg-slate-800"></div>
                 <div class="flex items-center gap-2">
-                    <span id="active-tool-title" class="text-sm font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 uppercase">Code Refactor</span>
+                    <span id="active-tool-title" class="text-sm font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 uppercase">Dashboard</span>
                 </div>
             </div>
             <div class="flex items-center gap-3 relative">
-                <!-- App view Menu Button & Dropdown -->
                 <button onclick="toggleMenuDropdown(event)" class="text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-1.5 rounded-xl transition cursor-pointer flex items-center gap-1.5">
                     ⚙️ Switch Tool ▾
                 </button>
@@ -235,93 +139,19 @@
                     <div class="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-t border-b border-slate-800 mt-1">Developer Suite</div>
                     <button onclick="switchTool('refactor')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">⚡ Code Refactor & ZK</button>
                     <button onclick="switchTool('json')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">📦 JSON Formatter</button>
-                    <button onclick="switchTool('base64')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🔤 Base64 Encoder</button>
-                    <button onclick="switchTool('css')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🎨 CSS Shadow Generator</button>
-                    <button onclick="switchTool('jwt')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🔐 JWT Debugger</button>
-                    <button onclick="switchTool('markdown')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">📝 Markdown Live Preview</button>
-                    <button onclick="switchTool('uuid')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🔑 UUID & Hash Generator</button>
-                    <button onclick="switchTool('regex')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🔍 Regex Tester</button>
-                    <div class="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-t border-b border-slate-800 mt-1">Advanced & Media</div>
-                    <button onclick="switchTool('sql')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🗄️ SQL Formatter</button>
-                    <button onclick="switchTool('cron')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">⏱️ Cron Expression Parser</button>
-                    <button onclick="switchTool('color')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🎨 Color Picker & Palette</button>
-                    <button onclick="switchTool('url')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🌐 URL Encoder / Decoder</button>
-                    <button onclick="switchTool('qr')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">📱 QR Code Generator</button>
                     <button onclick="switchTool('wallpaper')" class="w-full text-left px-4 py-2.5 text-xs text-emerald-400 font-bold hover:bg-slate-800/80 transition flex items-center gap-2 cursor-pointer">🖼️ Wallpaper Hub</button>
                 </div>
-                <button onclick="toggleHistoryModal()" class="text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3.5 py-1.5 rounded-xl transition cursor-pointer flex items-center gap-1.5">
-                    📜 History
-                </button>
             </div>
         </header>
 
-        <main id="main-content-area" class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 p-4 sm:p-6 max-w-[1600px] w-full mx-auto">
-            <!-- Left Panel / Input -->
-            <div id="left-panel-container" class="flex flex-col bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 overflow-hidden shadow-2xl">
-                <div class="bg-slate-900/80 border-b border-slate-800 px-4 py-3 flex justify-between items-center">
-                    <div id="input-header-label" class="flex items-center space-x-3">
-                        <span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-                            Legacy Code
-                        </span>
-                        <select id="language-select" class="bg-slate-800/90 text-slate-200 text-xs px-2.5 py-1.5 rounded-lg border border-slate-700 focus:outline-none focus:border-emerald-500 transition cursor-pointer">
-                            <option value="python">Python</option>
-                            <option value="javascript">JavaScript</option>
-                            <option value="cobol">COBOL</option>
-                        </select>
-                    </div>
-                    <button id="action-btn" onclick="executeCurrentTool()" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs px-4 py-2 rounded-xl transition cursor-pointer shadow-md shadow-emerald-600/20">
-                        Refactor & Audit
-                    </button>
-                </div>
-                <textarea id="code-input" class="flex-1 w-full h-[400px] p-4 bg-slate-950/50 text-slate-200 font-mono text-sm resize-none focus:outline-none leading-relaxed" spellcheck="false">class LogProcessor:
-    def __init__(self, log_file_path):
-        self.log_file_path = log_file_path
-        self.raw_data = []
-
-    def load_logs(self):
-        print "[*] Loading log file from: " + self.log_file_path
-        try:
-            f = open(self.log_file_path, 'r')
-            for line in f.readlines():
-                self.raw_data.append(line.strip())
-            f.close()
-            return True
-        except Exception, e:
-            print "[-] Error: " + str(e)
-            return False</textarea>
-            </div>
-
-            <!-- Right Panel / Output -->
-            <div id="right-panel-container" class="flex flex-col bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 overflow-hidden shadow-2xl">
-                <div class="bg-slate-900/80 border-b border-slate-800 px-4 py-3 flex justify-between items-center">
-                    <span id="output-header-label" class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                        Refactored & ZK-Audited Output
-                    </span>
-                    <button onclick="copyOutputCode()" id="copy-btn" class="hidden bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs px-3 py-1.5 rounded-xl transition cursor-pointer">Copy Code</button>
-                </div>
-                <div id="output-container" class="flex-1 p-4 font-mono text-sm text-slate-300 bg-slate-950/70 overflow-y-auto leading-relaxed flex flex-col items-center justify-center">
-                    <span class="text-slate-500">// Output results will appear here...</span>
-                </div>
-            </div>
+        <main id="main-content-area" class="flex-1 flex flex-col p-4 sm:p-6 max-w-[1600px] w-full mx-auto">
+            <!-- Dynamic content loaded via JS -->
         </main>
-    </div>
-
-    <!-- HISTORY MODAL -->
-    <div id="history-modal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex justify-center items-center p-4">
-        <div class="bg-slate-900 border border-slate-800 w-full max-w-xl rounded-2xl shadow-2xl flex flex-col max-h-[80vh] overflow-hidden">
-            <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center">
-                <h3 class="text-base font-bold text-slate-200 flex items-center gap-2">📜 Local History</h3>
-                <button onclick="toggleHistoryModal()" class="text-slate-400 hover:text-white text-xs bg-slate-800 px-2.5 py-1 rounded-lg transition cursor-pointer">✕ Close</button>
-            </div>
-            <div id="history-list" class="flex-1 p-6 overflow-y-auto space-y-3"></div>
-        </div>
     </div>
 
     <!-- Scripting -->
     <script>
-        let currentTool = 'refactor';
+        let currentTool = 'request';
         let latestRefactoredCode = "";
 
         function toggleMenuDropdown(event) {
@@ -336,23 +166,18 @@
         });
 
         function switchTool(tool) {
-            currentTool = tool;
             enterSandbox(tool);
         }
 
-        function enterSandbox(tool = 'refactor') {
+        function enterSandbox(tool = 'request') {
             currentTool = tool;
             document.getElementById('welcome-view').classList.add('hidden');
             document.getElementById('app-view').classList.remove('hidden');
 
             const titleElem = document.getElementById('active-tool-title');
-            const inputLabel = document.getElementById('input-header-label');
-            const outputLabel = document.getElementById('output-header-label');
-            const codeInput = document.getElementById('code-input');
-            const actionBtn = document.getElementById('action-btn');
             const mainContainer = document.getElementById('main-content-area');
 
-            // Handle Wallpaper Hub separately (Full width layout)
+            // Handle Wallpaper Hub
             if (tool === 'wallpaper') {
                 titleElem.innerText = "Wallpaper Hub & Download Station";
                 mainContainer.className = "flex-1 flex flex-col p-4 sm:p-6 max-w-[1600px] w-full mx-auto";
@@ -360,7 +185,7 @@
                     <div class="bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 p-6 shadow-2xl flex flex-col gap-6">
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-slate-800">
                             <div>
-                                <h2 class="text-lg font-bold text-white flex items-center gap-2">🖼️ HD Wallpaper Gallery</h2>
+                               <h2 class="text-lg font-bold text-white flex items-center gap-2">🖼️ HD Wallpaper Gallery</h2>
                                 <p class="text-slate-400 text-xs mt-1">Upload high-resolution wallpapers or browse and download instantly.</p>
                             </div>
                             <label class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs px-5 py-2.5 rounded-xl transition cursor-pointer shadow-md shadow-emerald-600/20 flex items-center gap-2">
@@ -368,139 +193,117 @@
                                 <input type="file" id="wallpaper-upload-input" accept="image/*" class="hidden" onchange="handleWallpaperUpload(event)">
                             </label>
                         </div>
-                        <div id="wallpaper-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                            <!-- Wallpapers will render here -->
-                        </div>
+                        <div id="wallpaper-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
                     </div>
                 `;
                 renderWallpapers();
                 return;
             }
 
-            // Restore normal two-column layout for other tools if coming from wallpaper tool
-            if (!document.getElementById('left-panel-container')) {
-                mainContainer.className = "flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 p-4 sm:p-6 max-w-[1600px] w-full mx-auto";
+            // Handle Request Hub with Clean Inline UI
+            if (tool === 'request') {
+                titleElem.innerText = "SL Movies Collective - Request Hub";
+                mainContainer.className = "flex-1 flex flex-col p-4 sm:p-6 max-w-xl mx-auto w-full justify-center items-center";
                 mainContainer.innerHTML = `
-                    <div id="left-panel-container" class="flex flex-col bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 overflow-hidden shadow-2xl">
-                        <div class="bg-slate-900/80 border-b border-slate-800 px-4 py-3 flex justify-between items-center">
-                            <div id="input-header-label" class="flex items-center space-x-3"></div>
-                            <button id="action-btn" onclick="executeCurrentTool()" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs px-4 py-2 rounded-xl transition cursor-pointer shadow-md shadow-emerald-600/20"></button>
+                    <div class="w-full bg-slate-900/90 backdrop-blur-xl rounded-3xl border border-slate-800 p-6 sm:p-8 shadow-2xl flex flex-col gap-6">
+                        <div class="text-center">
+                            <h1 class="text-xl sm:text-2xl font-black text-white flex items-center justify-center gap-2 mb-1">🎬 Movie & Series Request</h1>
+                            <p class="text-slate-400 text-xs">ඔබට අවශ්‍ය චිත්‍රපට හෝ කතා මාලාව පහතින් පුරවා අපගේ සමූහයට ඉල්ලුම් කරන්න.</p>
                         </div>
-                        <textarea id="code-input" class="flex-1 w-full h-[400px] p-4 bg-slate-950/50 text-slate-200 font-mono text-sm resize-none focus:outline-none leading-relaxed" spellcheck="false"></textarea>
-                    </div>
-                    <div id="right-panel-container" class="flex flex-col bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 overflow-hidden shadow-2xl">
-                        <div class="bg-slate-900/80 border-b border-slate-800 px-4 py-3 flex justify-between items-center">
-                            <span id="output-header-label" class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"></span>
-                            <button onclick="copyOutputCode()" id="copy-btn" class="hidden bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs px-3 py-1.5 rounded-xl transition cursor-pointer">Copy Code</button>
+
+                        <div id="request-form-container" class="flex flex-col gap-4">
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-semibold text-slate-300">👤 ඔබේ නම (Your Name)</label>
+                                <input type="text" id="req-name" placeholder="උදා: Kamal Perera" class="bg-slate-950 border border-slate-800 text-slate-100 text-xs p-3.5 rounded-xl focus:outline-none focus:border-red-500 transition">
+                            </div>
+
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-semibold text-slate-300">📌 වර්ගය (Type)</label>
+                                <select id="req-type" class="bg-slate-950 border border-slate-800 text-slate-100 text-xs p-3.5 rounded-xl focus:outline-none focus:border-red-500 transition cursor-pointer">
+                                    <option value="Movie 🎬">Movie 🎬</option>
+                                    <option value="TV Series 📺">TV Series 📺</option>
+                                </select>
+                            </div>
+
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-semibold text-slate-300">🎥 Movie හෝ Series එකේ නම (Name)</label>
+                                <input type="text" id="req-moviename" placeholder="උදා: Interstellar / Breaking Bad" class="bg-slate-950 border border-slate-800 text-slate-100 text-xs p-3.5 rounded-xl focus:outline-none focus:border-red-500 transition">
+                            </div>
+
+                            <button onclick="generateRequestPreview()" class="bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-400 hover:to-rose-400 text-slate-950 font-bold text-xs py-4 rounded-xl transition cursor-pointer shadow-lg shadow-red-500/20 flex items-center justify-center gap-2 mt-2">
+                                <span>✨ Request එක සකසන්න</span>
+                            </button>
                         </div>
-                        <div id="output-container" class="flex-1 p-4 font-mono text-sm text-slate-300 bg-slate-950/70 overflow-y-auto leading-relaxed flex flex-col items-center justify-center"></div>
+
+                        <!-- Inline Preview Box -->
+                        <div id="request-preview-box" class="hidden flex flex-col gap-4 bg-slate-950 border border-slate-800/80 p-5 rounded-2xl">
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                                <span class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">✅ ඉල්ලීම සූදානම්!</span>
+                                <button onclick="resetRequestForm()" class="text-[11px] text-slate-400 hover:text-white underline cursor-pointer">නව ඉල්ලීමක්</button>
+                            </div>
+
+                            <div class="text-[11px] text-slate-400">පහත පණිවිඩය Copy කරගෙන හෝ WhatsApp සමූහයට ගොස් Paste කරන්න:</div>
+
+                            <div id="formatted-message-text" class="bg-slate-900 border border-slate-800 p-3.5 rounded-xl text-xs font-mono text-slate-200 select-all leading-relaxed"></div>
+
+                            <div class="flex flex-col sm:flex-row gap-2.5 pt-1">
+                                <button onclick="copyMessage()" id="copy-msg-btn" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs py-3 rounded-xl transition cursor-pointer flex items-center justify-center gap-1.5 border border-slate-700">
+                                    📋 Message එක Copy කරගන්න
+                                </button>
+                                <a id="whatsapp-group-link-btn" href="#" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs py-3 rounded-xl transition cursor-pointer flex items-center justify-center gap-1.5 text-center shadow-md shadow-emerald-600/20">
+                                    💬 WhatsApp Group වෙත යන්න
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Inline Error Box -->
+                        <div id="error-alert-box" class="hidden bg-red-950/40 border border-red-500/40 p-4 rounded-xl text-xs text-red-400 font-semibold text-center">
+                            ⚠️ කරුණාකර ඔබේ නම සහ Movie/Series එකේ නම නිවැරදිව ඇතුළත් කරන්න!
+                        </div>
                     </div>
                 `;
+                return;
             }
 
-            // Re-assign references after potential DOM reset
+            // Handle Code Refactor & JSON Formatter
+            mainContainer.className = "flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 p-4 sm:p-6 max-w-[1600px] w-full mx-auto";
+            mainContainer.innerHTML = `
+                <div id="left-panel-container" class="flex flex-col bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 overflow-hidden shadow-2xl">
+                    <div class="bg-slate-900/80 border-b border-slate-800 px-4 py-3 flex justify-between items-center">
+                        <div id="input-header-label" class="flex items-center space-x-3"></div>
+                        <button id="action-btn" onclick="executeCurrentTool()" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs px-4 py-2 rounded-xl transition cursor-pointer shadow-md shadow-emerald-600/20"></button>
+                    </div>
+                    <textarea id="code-input" class="flex-1 w-full h-[400px] p-4 bg-slate-950/50 text-slate-200 font-mono text-sm resize-none focus:outline-none leading-relaxed" spellcheck="false"></textarea>
+                </div>
+                <div id="right-panel-container" class="flex flex-col bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800/80 overflow-hidden shadow-2xl">
+                    <div class="bg-slate-900/80 border-b border-slate-800 px-4 py-3 flex justify-between items-center">
+                        <span id="output-header-label" class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"></span>
+                        <button onclick="copyOutputCode()" id="copy-btn" class="hidden bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs px-3 py-1.5 rounded-xl transition cursor-pointer">Copy Code</button>
+                    </div>
+                    <div id="output-container" class="flex-1 p-4 font-mono text-sm text-slate-300 bg-slate-950/70 overflow-y-auto leading-relaxed flex flex-col items-center justify-center"></div>
+                </div>
+            `;
+
             const inputLbl = document.getElementById('input-header-label');
             const outputLbl = document.getElementById('output-header-label');
             const codeInp = document.getElementById('code-input');
             const actBtn = document.getElementById('action-btn');
 
-            if (tool === 'request') {
-                titleElem.innerText = "SL Movies Collective - Request Hub";
-                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-red-400"></span> Request Details</span>`;
-                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Live WhatsApp Preview`;
-                actBtn.innerText = "Send to WhatsApp";
-                codeInp.value = "Group: 🎥 SL MOVIES COLLECTIVE ッ\nAdmin: Ready to receive requests.";
-            } else if (tool === 'refactor') {
+            if (tool === 'refactor') {
                 titleElem.innerText = "Code Refactor & ZK Audit";
                 inputLbl.innerHTML = `
                     <span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
                         <span class="w-2 h-2 rounded-full bg-amber-400"></span> Legacy Code
-                    </span>
-                    <select id="language-select" class="bg-slate-800/90 text-slate-200 text-xs px-2.5 py-1.5 rounded-lg border border-slate-700 focus:outline-none focus:border-emerald-500 transition cursor-pointer">
-                        <option value="python">Python</option>
-                        <option value="javascript">JavaScript</option>
-                        <option value="cobol">COBOL</option>
-                    </select>`;
+                    </span>`;
                 outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Refactored & ZK-Audited Output`;
                 actBtn.innerText = "Refactor & Audit";
-                codeInp.value = `class LogProcessor:\n    def __init__(self, log_file_path):\n        self.log_file_path = log_file_path\n\n    def load_logs(self):\n        print "[*] Loading log file from: " + self.log_file_path`;
+                codeInp.value = `class LogProcessor:\n    def __init__(self, log_file_path):\n        self.log_file_path = log_file_path`;
             } else if (tool === 'json') {
                 titleElem.innerText = "JSON Formatter & Validator";
                 inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Raw JSON Input</span>`;
                 outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Formatted & Validated JSON`;
                 actBtn.innerText = "Format JSON";
-                codeInp.value = `{"name":"UXPRO","version":1.5,"features":["ZK-Proofs","Refactor","Local History"],"active":true}`;
-            } else if (tool === 'base64') {
-                titleElem.innerText = "Base64 Encoder / Decoder";
-                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Plain Text</span>`;
-                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Base64 Output`;
-                actBtn.innerText = "Encode Base64";
-                codeInp.value = `Hello, UXPRO Security Sandbox!`;
-            } else if (tool === 'css') {
-                titleElem.innerText = "CSS Shadow Generator";
-                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Shadow Settings (X, Y, Blur, Spread, Color)</span>`;
-                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Generated CSS & Preview`;
-                actBtn.innerText = "Generate CSS";
-                codeInp.value = `0 10px 25px -5px rgba(16, 185, 129, 0.4)`;
-            } else if (tool === 'jwt') {
-                titleElem.innerText = "JWT Debugger & Decoder";
-                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Paste JWT Token Here</span>`;
-                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Decoded Header & Payload`;
-                actBtn.innerText = "Decode JWT";
-                codeInp.value = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlVYUFJPIFVzZXIiLCJpYXQiOjE2MTYyMzkwMjJ9.signature_placeholder`;
-            } else if (tool === 'markdown') {
-                titleElem.innerText = "Markdown Live Previewer";
-                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Markdown Input</span>`;
-                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Rendered Preview`;
-                actBtn.innerText = "Render Markdown";
-                codeInp.value = `# Welcome to UXPRO\n\nThis is a **privacy-first** markdown snippet.\n\n- Zero Knowledge Audits\n- Client-side execution\n- Fully Responsive`;
-            } else if (tool === 'uuid') {
-                titleElem.innerText = "UUID & Hash Generator";
-                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Text to Hash</span>`;
-                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Generated UUID & Hashes`;
-                actBtn.innerText = "Generate Hashes";
-                codeInp.value = `UXPRO Security Sandbox 2026`;
-            } else if (tool === 'regex') {
-                titleElem.innerText = "Regex Tester";
-                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Format: /pattern/flags || test_string</span>`;
-                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Match Results`;
-                actBtn.innerText = "Test Regex";
-                codeInp.value = `/\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b/g || Contact us at support@uxpro.io or admin@sandbox.dev`;
-            } else if (tool === 'sql') {
-                titleElem.innerText = "SQL Formatter";
-                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Raw SQL Query</span>`;
-                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Formatted SQL Query`;
-                actBtn.innerText = "Format SQL";
-                codeInp.value = `select id, name, email from users where status = 'active' order by created_at desc;`;
-            } else if (tool === 'cron') {
-                titleElem.innerText = "Cron Expression Parser";
-                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Cron Expression (e.g. * * * * *)</span>`;
-                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Parsed Schedule Description`;
-                actBtn.innerText = "Parse Cron";
-                codeInp.value = `0 12 * * *`;
-            } else if (tool === 'color') {
-                titleElem.innerText = "Color Picker & Palette Generator";
-                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Enter HEX Code (e.g. #10B981)</span>`;
-                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Color Conversions & Preview`;
-                actBtn.innerText = "Generate Palette";
-                codeInp.value = `#10B981`;
-            } else if (tool === 'url') {
-                titleElem.innerText = "URL Encoder / Decoder";
-                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> URL String</span>`;
-                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Encoded / Decoded URL`;
-                actBtn.innerText = "Process URL";
-                codeInp.value = `https://uxpro.io/search?q=developer sandbox & tools`;
-            } else if (tool === 'qr') {
-                titleElem.innerText = "QR Code Generator";
-                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Text or URL for QR Code</span>`;
-                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> QR Code Visualization`;
-                actBtn.innerText = "Generate QR";
-                codeInp.value = `https://uxpro.io`;
-            }
-
-            if (tool !== 'wallpaper') {
-                document.getElementById('output-container').innerHTML = `<span class="text-slate-500">// Output results will appear here...</span>`;
-                document.getElementById('copy-btn').classList.add('hidden');
+                codeInp.value = `{"name":"UXPRO","version":1.6,"active":true}`;
             }
         }
 
@@ -509,20 +312,13 @@
             document.getElementById('welcome-view').classList.remove('hidden');
         }
 
-        // Wallpaper Management Logic using LocalStorage
         function handleWallpaperUpload(event) {
             const file = event.target.files[0];
             if (!file) return;
             const reader = new FileReader();
             reader.onload = function(e) {
-                const base64Image = e.target.result;
                 let wallpapers = JSON.parse(localStorage.getItem('uxpro_wallpapers')) || [];
-                wallpapers.unshift({
-                    id: Date.now(),
-                    name: file.name.substring(0, 20),
-                    url: base64Image,
-                    date: new Date().toLocaleDateString()
-                });
+                wallpapers.unshift({ id: Date.now(), name: file.name.substring(0, 20), url: e.target.result });
                 localStorage.setItem('uxpro_wallpapers', JSON.stringify(wallpapers));
                 renderWallpapers();
             };
@@ -533,267 +329,97 @@
             const grid = document.getElementById('wallpaper-grid');
             if (!grid) return;
             let wallpapers = JSON.parse(localStorage.getItem('uxpro_wallpapers')) || [];
-            
             if (wallpapers.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-span-full py-12 text-center text-slate-500 text-xs">
-                        No wallpapers uploaded yet. Click upload above to add your first background!
-                    </div>
-                `;
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-slate-500 text-xs">No wallpapers uploaded yet.</div>`;
                 return;
             }
-
             grid.innerHTML = wallpapers.map(wp => `
                 <div class="bg-slate-950/80 border border-slate-800 rounded-2xl overflow-hidden flex flex-col group shadow-lg">
-                    <div class="h-40 overflow-hidden relative bg-slate-900">
-                        <img src="${wp.url}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                    </div>
+                    <div class="h-40 overflow-hidden relative bg-slate-900"><img src="${wp.url}" class="w-full h-full object-cover"></div>
                     <div class="p-3 flex justify-between items-center bg-slate-900/90 border-t border-slate-800">
-                        <span class="text-xs font-medium text-slate-300 truncate max-w-[120px]">${wp.name}</span>
-                        <a href="${wp.url}" download="wallpaper_${wp.id}.png" class="bg-emerald-600/20 hover:bg-emerald-600 text-emerald-400 hover:text-slate-950 font-bold text-[11px] px-3 py-1.5 rounded-xl transition flex items-center gap-1 cursor-pointer">
-                            ⬇️ Download
-                        </a>
+                        <span class="text-xs font-medium text-slate-300 truncate">${wp.name}</span>
+                        <a href="${wp.url}" download class="bg-emerald-600/20 hover:bg-emerald-600 text-emerald-400 hover:text-slate-950 font-bold text-[11px] px-3 py-1.5 rounded-xl transition">⬇️ Download</a>
                     </div>
                 </div>
             `).join('');
         }
 
-        async function generateZKProof(code) {
-            const encoder = new TextEncoder();
-            const data = encoder.encode(code);
-            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        // WhatsApp Request Hub Functions (With Your Invite Link Added)
+        const whatsappGroupInviteLink = "https://chat.whatsapp.com/KGJcZ65J2NeJk2q1AIJfKs?s=cl&p=a&ilr=1&amv=1";
+
+        function generateRequestPreview() {
+            const name = document.getElementById('req-name').value.trim();
+            const type = document.getElementById('req-type').value;
+            const movieName = document.getElementById('req-moviename').value.trim();
+            
+            const previewBox = document.getElementById('request-preview-box');
+            const errorBox = document.getElementById('error-alert-box');
+
+            if (!name || !movieName) {
+                previewBox.classList.add('hidden');
+                errorBox.classList.remove('hidden');
+                return;
+            }
+
+            errorBox.classList.add('hidden');
+
+            const formattedText = `*--- NEW MOVIE REQUEST ---*\n\n*👤 නම:* ${name}\n*📌 වර්ගය:* ${type}\n*🎥 නම:* ${movieName}\n\n_🎬 SL MOVIES COLLECTIVE ッ_`;
+
+            document.getElementById('formatted-message-text').innerText = formattedText;
+            document.getElementById('whatsapp-group-link-btn').href = whatsappGroupInviteLink;
+            
+            previewBox.classList.remove('hidden');
+            previewBox.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function copyMessage() {
+            const textToCopy = document.getElementById('formatted-message-text').innerText;
+            navigator.clipboard.writeText(textToCopy);
+            
+            const copyBtn = document.getElementById('copy-msg-btn');
+            copyBtn.innerText = "✅ Copied!";
+            copyBtn.classList.add('bg-emerald-600', 'text-slate-950');
+            
+            setTimeout(() => {
+                copyBtn.innerText = "📋 Message එක Copy කරගන්න";
+                copyBtn.classList.remove('bg-emerald-600', 'text-slate-950');
+            }, 2500);
+        }
+
+        function resetRequestForm() {
+            document.getElementById('req-name').value = '';
+            document.getElementById('req-moviename').value = '';
+            document.getElementById('request-preview-box').classList.add('hidden');
+            document.getElementById('error-alert-box').classList.add('hidden');
         }
 
         async function executeCurrentTool() {
-            const codeInput = document.getElementById('code-input').value;
-            const outputDiv = document.getElementById('output-container');
-            const copyBtn = document.getElementById('copy-btn');
-
-            if (currentTool === 'request') {
-                const name = prompt("ඔබේ නම ඇතුළත් කරන්න (Enter your name):");
-                const movieName = prompt("ඔබට අවශ්‍ය Movie හෝ Series එකේ නම:");
-                const type = confirm("ఇది TV Series එකක්ද? (OK = Series, Cancel = Movie)") ? "TV Series 📺" : "Movie 🎬";
-
-                if (!name || !movieName) {
-                    outputDiv.innerHTML = `<span class="text-red-400">කරුණාකර නම සහ නම නිවැරදිව ලබා දෙන්න!</span>`;
-                    return;
-                }
-
-                // ඔයාගේ WhatsApp අංකය මෙතැනට දෙන්න (Country code සමඟ, උදා: 9477xxxxxxx)
-                const adminWhatsAppNumber = "120363411921539420@g.us"; 
-
-                const message = `*--- NEW MOVIE REQUEST ---*%0A%0A*👤 නම:* ${name}%0A*📌 වර්ගය:* ${type}%0A*🎥 නම:* ${movieName}%0A%0A_🎬 SL MOVIES COLLECTIVE ッ_`;
-                const whatsappURL = `https://wa.me/${adminWhatsAppNumber}?text=${message}`;
-
-                latestRefactoredCode = `Name: ${name}\nType: ${type}\nRequested: ${movieName}\nWhatsApp Link Generated!`;
-                outputDiv.innerHTML = `
-                    <div class="p-6 bg-slate-950 rounded-2xl flex flex-col items-center justify-center border border-slate-800 gap-4 text-center">
-                        <p class="text-xs text-slate-300">ඔබේ ඉල්ලීම සූදානම්! පහත බොත්තම ඔබා WhatsApp වෙත යවන්න.</p>
-                        <a href="${whatsappURL}" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs px-5 py-2.5 rounded-xl transition cursor-pointer shadow-md shadow-emerald-600/20 flex items-center gap-2">
-                            📲 Open WhatsApp & Send
-                        </a>
-                    </div>`;
-                copyBtn.classList.remove('hidden');
-                return;
-            } else if (currentTool === 'refactor') {
-                const language = document.getElementById('language-select').value;
-                outputDiv.innerHTML = `<span class="text-amber-400">[1] Generating ZK-Proof...</span><br>`;
-                const hash = await generateZKProof(codeInput);
-                setTimeout(() => {
-                    latestRefactoredCode = `// Modernized Code (${language})\n// ZK Hash: ${hash}\n\n` + codeInput.replace(/print\s+(["'].*?["'])/g, 'print($1)');
-                    outputDiv.innerHTML = `<pre class="text-emerald-300">${escapeHtml(latestRefactoredCode)}</pre>`;
-                    copyBtn.classList.remove('hidden');
-                    saveToHistory(language, codeInput, latestRefactoredCode, hash);
-                }, 400);
-            } else if (currentTool === 'json') {
-                try {
-                    const parsed = JSON.parse(codeInput);
-                    latestRefactoredCode = JSON.stringify(parsed, null, 4);
-                    outputDiv.innerHTML = `<pre class="text-emerald-300">${escapeHtml(latestRefactoredCode)}</pre>`;
-                    copyBtn.classList.remove('hidden');
-                } catch (e) {
-                    outputDiv.innerHTML = `<span class="text-red-400">Invalid JSON: ${e.message}</span>`;
-                }
-            } else if (currentTool === 'base64') {
-                try {
-                    latestRefactoredCode = btoa(codeInput);
-                    outputDiv.innerHTML = `<pre class="text-emerald-300">${escapeHtml(latestRefactoredCode)}</pre>`;
-                    copyBtn.classList.remove('hidden');
-                } catch (e) {
-                    outputDiv.innerHTML = `<span class="text-red-400">Encoding Error: ${e.message}</span>`;
-                }
-            } else if (currentTool === 'css') {
-                latestRefactoredCode = `box-shadow: ${codeInput};`;
-                outputDiv.innerHTML = `
-                    <pre class="text-emerald-300 mb-4 font-mono text-xs">${escapeHtml(latestRefactoredCode)}</pre>
-                    <div class="p-8 bg-slate-950 rounded-2xl flex items-center justify-center border border-slate-800 min-h-[180px]">
-                        <div class="w-24 h-24 bg-emerald-500 rounded-xl transition-all duration-300 flex items-center justify-center text-slate-950 font-bold text-xs" style="box-shadow: ${codeInput};">
-                            Preview
-                        </div>
-                    </div>`;
-                copyBtn.classList.remove('hidden');
-            } else if (currentTool === 'jwt') {
-                try {
-                    const parts = codeInput.split('.');
-                    if (parts.length < 2) throw new Error("Invalid JWT format (expected header.payload.signature)");
-                    const header = JSON.parse(atob(parts[0].replace(/-/g, '+').replace(/_/g, '/')));
-                    const payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')));
-                    latestRefactoredCode = `HEADER:\n${JSON.stringify(header, null, 2)}\n\nPAYLOAD:\n${JSON.stringify(payload, null, 2)}`;
-                    outputDiv.innerHTML = `<pre class="text-emerald-300 text-xs">${escapeHtml(latestRefactoredCode)}</pre>`;
-                    copyBtn.classList.remove('hidden');
-                } catch (e) {
-                    outputDiv.innerHTML = `<span class="text-red-400">JWT Decode Error: ${e.message}</span>`;
-                }
-            } else if (currentTool === 'markdown') {
-                let html = codeInput
-                    .replace(/^# (.*$)/gm, '<h1 class="text-xl font-bold text-white mb-2">$1</h1>')
-                    .replace(/^## (.*$)/gm, '<h2 class="text-lg font-bold text-slate-200 mb-2">$2</h2>')
-                    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-emerald-400">$1</strong>')
-                    .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
-                    .replace(/^- (.*$)/gm, '<li class="ml-4 list-disc text-slate-300">$1</li>');
-                latestRefactoredCode = codeInput;
-                outputDiv.innerHTML = `<div class="p-4 bg-slate-950 rounded-xl border border-slate-800 space-y-2">${html}</div>`;
-                copyBtn.classList.remove('hidden');
-            } else if (currentTool === 'uuid') {
-                const uuid = crypto.randomUUID();
-                const sha256 = await generateZKProof(codeInput);
-                latestRefactoredCode = `UUID v4: ${uuid}\nSHA-256 Hash: ${sha256}`;
-                outputDiv.innerHTML = `<pre class="text-emerald-300 text-xs">${escapeHtml(latestRefactoredCode)}</pre>`;
-                copyBtn.classList.remove('hidden');
-            } else if (currentTool === 'regex') {
-                try {
-                    const parts = codeInput.split('||');
-                    if (parts.length < 2) throw new Error("Use format: /pattern/flags || test_string");
-                    const regexParts = parts[0].trim().match(/^\/(.+)\/([gimsuy]*)$/);
-                    if (!regexParts) throw new Error("Invalid regex literal format (e.g. /abc/g)");
-                    const regex = new RegExp(regexParts[1], regexParts[2]);
-                    const testStr = parts[1].trim();
-                    const matches = testStr.match(regex);
-                    latestRefactoredCode = `Pattern: ${regex}\nTest String: ${testStr}\nMatches Found: ${matches ? JSON.stringify(matches) : 'None'}`;
-                    outputDiv.innerHTML = `<pre class="text-emerald-300 text-xs">${escapeHtml(latestRefactoredCode)}</pre>`;
-                    copyBtn.classList.remove('hidden');
-                } catch (e) {
-                    outputDiv.innerHTML = `<span class="text-red-400">Regex Error: ${e.message}</span>`;
-                }
-            } else if (currentTool === 'sql') {
-                latestRefactoredCode = codeInput
-                    .replace(/\b(SELECT|FROM|WHERE|ORDER BY|GROUP BY|INSERT INTO|UPDATE|DELETE)\b/gi, '\n  $&')
-                    .replace(/\b(AND|OR)\b/gi, '\n    $&')
-                    .trim();
+            if (currentTool === 'refactor') {
+                const codeInput = document.getElementById('code-input').value;
+                const outputDiv = document.getElementById('output-container');
+                const copyBtn = document.getElementById('copy-btn');
+                
+                latestRefactoredCode = `// Modernized Code\n` + codeInput;
                 outputDiv.innerHTML = `<pre class="text-emerald-300">${escapeHtml(latestRefactoredCode)}</pre>`;
                 copyBtn.classList.remove('hidden');
-            } else if (currentTool === 'cron') {
-                latestRefactoredCode = `Cron Expression: ${codeInput}\nDescription: Scheduled execution interpretation successfully for pattern: [${codeInput}]`;
-                outputDiv.innerHTML = `<pre class="text-emerald-300 text-xs">${escapeHtml(latestRefactoredCode)}</pre>`;
-                copyBtn.classList.remove('hidden');
-            } else if (currentTool === 'color') {
-                let hex = codeInput.trim();
-                latestRefactoredCode = `HEX: ${hex}\nFormat: Valid CSS color representation`;
-                outputDiv.innerHTML = `
-                    <pre class="text-emerald-300 text-xs mb-4">${escapeHtml(latestRefactoredCode)}</pre>
-                    <div class="p-6 bg-slate-950 rounded-2xl flex items-center justify-center border border-slate-800">
-                        <div class="w-24 h-24 rounded-xl border border-slate-700 shadow-lg" style="background-color: ${hex};"></div>
-                    </div>`;
-                copyBtn.classList.remove('hidden');
-            } else if (currentTool === 'url') {
+            }
+            else if (currentTool === 'json') {
+                const codeInput = document.getElementById('code-input').value;
+                const outputDiv = document.getElementById('output-container');
+                const copyBtn = document.getElementById('copy-btn');
                 try {
-                    const encoded = encodeURIComponent(codeInput);
-                    const decoded = decodeURIComponent(codeInput);
-                    latestRefactoredCode = `Encoded: ${encoded}\nDecoded: ${decoded}`;
-                    outputDiv.innerHTML = `<pre class="text-emerald-300 text-xs">${escapeHtml(latestRefactoredCode)}</pre>`;
+                    const parsed = JSON.parse(codeInput);
+                    latestRefactoredCode = JSON.stringify(parsed, null, 2);
+                    outputDiv.innerHTML = `<pre class="text-teal-300">${escapeHtml(latestRefactoredCode)}</pre>`;
                     copyBtn.classList.remove('hidden');
-                } catch (e) {
-                    outputDiv.innerHTML = `<span class="text-red-400">URL Error: ${e.message}</span>`;
+                } catch(e) {
+                    outputDiv.innerHTML = `<span class="text-red-400">Invalid JSON: ${e.message}</span>`;
                 }
-            } else if (currentTool === 'qr') {
-                latestRefactoredCode = `QR Content: ${codeInput}`;
-                outputDiv.innerHTML = `
-                    <div class="p-6 bg-slate-950 rounded-2xl flex flex-col items-center justify-center border border-slate-800 gap-4">
-                        <div id="qrcode-canvas" class="bg-white p-3 rounded-xl shadow-lg"></div>
-                        <button onclick="downloadQRCode()" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs px-4 py-2 rounded-xl transition cursor-pointer shadow-md shadow-emerald-600/20 flex items-center gap-1.5">
-                            ⬇️ Download QR Image
-                        </button>
-                    </div>`;
-                
-                setTimeout(() => {
-                    const container = document.getElementById("qrcode-canvas");
-                    if (container) {
-                        container.innerHTML = "";
-                        new QRCode(container, {
-                            text: codeInput,
-                            width: 160,
-                            height: 160,
-                            colorDark: "#07090e",
-                            colorLight: "#ffffff",
-                            correctLevel: QRCode.CorrectLevel.H
-                        });
-                    }
-                }, 50);
-
-                copyBtn.classList.add('hidden');
-            }
-        }
-
-        function downloadQRCode() {
-            const container = document.getElementById("qrcode-canvas");
-            if (!container) return;
-            const img = container.querySelector("img");
-            const canvas = container.querySelector("canvas");
-
-            let imageUrl = "";
-            if (img && img.src) {
-                imageUrl = img.src;
-            } else if (canvas) {
-                imageUrl = canvas.toDataURL("image/png");
-            }
-
-            if (imageUrl) {
-                const link = document.createElement('a');
-                link.href = imageUrl;
-                link.download = 'uxpro-qrcode.png';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }
-        }
-
-        function saveToHistory(language, legacyCode, refactoredCode, zkProof) {
-            let history = JSON.parse(localStorage.getItem('uxpro_history')) || [];
-            history.unshift({ id: Date.now(), date: new Date().toLocaleString(), language, legacyCode, refactoredCode, zkProof });
-            if (history.length > 20) history.pop();
-            localStorage.setItem('uxpro_history', JSON.stringify(history));
-        }
-
-        function toggleHistoryModal() {
-            const modal = document.getElementById('history-modal');
-            modal.classList.toggle('hidden');
-            if (!modal.classList.contains('hidden')) {
-                const historyList = document.getElementById('history-list');
-                let history = JSON.parse(localStorage.getItem('uxpro_history')) || [];
-                if (history.length === 0) {
-                    historyList.innerHTML = `<p class="text-slate-500 text-sm text-center py-6">No history found yet.</p>`;
-                    return;
-                }
-                historyList.innerHTML = history.map(item => `
-                    <div class="bg-slate-950/60 border border-slate-800 p-4 rounded-xl flex flex-col gap-2">
-                        <div class="flex justify-between items-center text-xs text-slate-400">
-                            <span class="font-semibold text-emerald-400 uppercase">${item.language}</span>
-                            <span>${item.date}</span>
-                        </div>
-                        <pre class="text-xs text-slate-300 font-mono bg-slate-900/80 p-2.5 rounded-xl overflow-x-auto max-h-24">${escapeHtml(item.legacyCode)}</pre>
-                    </div>
-                `).join('');
             }
         }
 
         function copyOutputCode() {
-            navigator.clipboard.writeText(latestRefactoredCode).then(() => {
-                const copyBtn = document.getElementById('copy-btn');
-                copyBtn.innerText = "Copied!";
-                setTimeout(() => copyBtn.innerText = "Copy Code", 2000);
-            });
+            navigator.clipboard.writeText(latestRefactoredCode);
         }
 
         function escapeHtml(text) {
