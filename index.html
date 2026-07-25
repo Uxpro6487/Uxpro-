@@ -88,7 +88,7 @@
                     <div>
                         <div class="w-9 h-9 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 mb-3 text-base">🎬</div>
                         <h3 class="text-sm font-bold text-white mb-1">Movie Request</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Request movies & series for WhatsApp groups via clean UI.</p>
+                        <p class="text-slate-400 text-xs leading-relaxed">Join groups and request movies & series easily.</p>
                     </div>
                 </div>
                 <div onclick="enterSandbox('wallpaper')" class="bg-slate-900/50 backdrop-blur-md border border-emerald-500/40 p-5 rounded-3xl hover:border-emerald-500 transition duration-300 cursor-pointer flex flex-col justify-between shadow-lg shadow-emerald-500/5">
@@ -200,91 +200,101 @@
                 return;
             }
 
-            // Handle Request Hub with Attractive Group Selection Cards
+            // Handle Request Hub (Groups First, Then Request Form)
             if (tool === 'request') {
                 titleElem.innerText = "SL Movies Collective - Request Hub";
-                mainContainer.className = "flex-1 flex flex-col p-4 sm:p-6 max-w-xl mx-auto w-full justify-center items-center";
+                mainContainer.className = "flex-1 flex flex-col p-4 sm:p-6 max-w-2xl mx-auto w-full justify-center items-center";
                 mainContainer.innerHTML = `
-                    <div class="w-full bg-slate-900/90 backdrop-blur-xl rounded-3xl border border-slate-800 p-6 sm:p-8 shadow-2xl flex flex-col gap-6">
-                        <div class="text-center">
-                            <h1 class="text-xl sm:text-2xl font-black text-white flex items-center justify-center gap-2 mb-1">🎬 Movie & Series Request Hub</h1>
-                            <p class="text-slate-400 text-xs">ඔබට අවශ්‍ය චිත්‍රපට හෝ කතා මාලාව පහතින් පුරවා අදාළ WhatsApp සමූහයට ඉල්ලුම් කරන්න.</p>
-                        </div>
-
-                        <div id="request-form-container" class="flex flex-col gap-4">
-                            <div class="flex flex-col gap-1.5">
-                                <label class="text-xs font-semibold text-slate-300">👤 ඔබේ නම (Your Name)</label>
-                                <input type="text" id="req-name" placeholder="උදා: Kamal Perera" class="bg-slate-950 border border-slate-800 text-slate-100 text-xs p-3.5 rounded-xl focus:outline-none focus:border-red-500 transition">
+                    <div class="w-full flex flex-col gap-6">
+                        
+                        <!-- STEP 1: WHATSAPP GROUPS FIRST -->
+                        <div class="w-full bg-slate-900/90 backdrop-blur-xl rounded-3xl border border-red-500/30 p-6 sm:p-8 shadow-2xl flex flex-col gap-5">
+                            <div class="text-center">
+                                <span class="text-xs uppercase tracking-widest text-red-400 font-extrabold bg-red-500/10 px-3 py-1 rounded-full border border-red-500/20">Step 1: Join Our Community</span>
+                                <h1 class="text-xl sm:text-2xl font-black text-white mt-3 mb-1">📢 පළමුව අපගේ WhatsApp සමූහයන්ට එකතු වන්න!</h1>
+                                <p class="text-slate-400 text-xs">චිත්‍රපට සහ කතා මාලා (Movies & TV Series) ලබා ගැනීමට සහ ඉල්ලීම් කිරීමට කරුණාකර පහත අපගේ නිල සමූහයන්ට Join වන්න.</p>
                             </div>
 
-                            <div class="flex flex-col gap-1.5">
-                                <label class="text-xs font-semibold text-slate-300">📌 වර්ගය (Type)</label>
-                                <select id="req-type" class="bg-slate-950 border border-slate-800 text-slate-100 text-xs p-3.5 rounded-xl focus:outline-none focus:border-red-500 transition cursor-pointer">
-                                    <option value="Movie 🎬">Movie 🎬</option>
-                                    <option value="TV Series 📺">TV Series 📺</option>
-                                </select>
-                            </div>
-
-                            <div class="flex flex-col gap-1.5">
-                                <label class="text-xs font-semibold text-slate-300">🎥 Movie හෝ Series එකේ නම (Name)</label>
-                                <input type="text" id="req-moviename" placeholder="උදා: Interstellar / Breaking Bad" class="bg-slate-950 border border-slate-800 text-slate-100 text-xs p-3.5 rounded-xl focus:outline-none focus:border-red-500 transition">
-                            </div>
-
-                            <button onclick="generateRequestPreview()" class="bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-400 hover:to-rose-400 text-slate-950 font-bold text-xs py-4 rounded-xl transition cursor-pointer shadow-lg shadow-red-500/20 flex items-center justify-center gap-2 mt-2">
-                                <span>✨ Request එක සකසන්න</span>
-                            </button>
-                        </div>
-
-                        <!-- Inline Preview & Group Selection Box -->
-                        <div id="request-preview-box" class="hidden flex flex-col gap-4 bg-slate-950 border border-slate-800/80 p-5 rounded-2xl">
-                            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                                <span class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">✅ ඉල්ලීම සූදානම්!</span>
-                                <button onclick="resetRequestForm()" class="text-[11px] text-slate-400 hover:text-white underline cursor-pointer">නව ඉල්ලීමක්</button>
-                            </div>
-
-                            <div class="text-[11px] text-slate-400">පළමුව පහත Message එක **Copy** කරගන්න. ඉන්පසු ඔබ සම්බන්ධ වීමට කැමති WhatsApp Group එක තෝරාගෙන Group එකට ගොස් එය Paste කරන්න:</div>
-
-                            <!-- Formatted Message Box -->
-                            <div id="formatted-message-text" class="bg-slate-900 border border-slate-800 p-3.5 rounded-xl text-xs font-mono text-slate-200 select-all leading-relaxed"></div>
-
-                            <button onclick="copyMessage()" id="copy-msg-btn" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs py-3 rounded-xl transition cursor-pointer flex items-center justify-center gap-1.5 border border-slate-700 shadow-sm">
-                                📋 Message එක Copy කරගන්න
-                            </button>
-
-                            <div class="text-xs font-bold text-slate-300 mt-2">💬 WhatsApp සමූහයන් (WhatsApp Groups):</div>
-                            
-                            <!-- Attractive Group Links Grid -->
-                            <div class="flex flex-col gap-2.5">
+                            <!-- Attractive Group Cards Grid -->
+                            <div class="flex flex-col gap-3 mt-2">
                                 <!-- TV Series Group -->
-                                <a href="https://chat.whatsapp.com/LwnUMY8H3exIEvGIzWowCs?s=cl&p=a&ilr=1&amv=1" target="_blank" class="bg-gradient-to-r from-indigo-950/60 to-purple-950/60 hover:from-indigo-900/80 hover:to-purple-900/80 border border-indigo-500/40 p-3 rounded-xl transition flex items-center justify-between text-xs text-indigo-300 font-semibold group shadow-md">
-                                    <span class="flex items-center gap-2">📺 SL Movies Collective TV SERIES Group</span>
-                                    <span class="bg-indigo-600 text-white text-[10px] px-2.5 py-1 rounded-lg group-hover:bg-indigo-500">Join ↗</span>
+                                <a href="https://chat.whatsapp.com/LwnUMY8H3exIEvGIzWowCs?s=cl&p=a&ilr=1&amv=1" target="_blank" class="bg-gradient-to-r from-indigo-950/80 to-purple-950/80 hover:from-indigo-900 hover:to-purple-900 border border-indigo-500/50 p-4 rounded-2xl transition flex items-center justify-between text-xs text-indigo-200 font-semibold group shadow-lg">
+                                    <span class="flex items-center gap-2.5">📺 SL Movies Collective TV SERIES Group</span>
+                                    <span class="bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] px-3 py-1.5 rounded-xl shadow-md">Join Group ↗</span>
                                 </a>
 
                                 <!-- Movie Group 1 -->
-                                <a href="https://chat.whatsapp.com/K6x0GwLM6x386z5yL6ZvIu?s=cl&p=a&ilr=1&amv=1" target="_blank" class="bg-slate-900 hover:bg-slate-850 border border-slate-800 hover:border-emerald-500/40 p-3 rounded-xl transition flex items-center justify-between text-xs text-slate-200 group">
-                                    <span class="flex items-center gap-2">🎥 SL Movies Collective - 1</span>
-                                    <span class="bg-emerald-600/20 text-emerald-400 text-[10px] px-2.5 py-1 rounded-lg group-hover:bg-emerald-600 group-hover:text-slate-950">Join ↗</span>
+                                <a href="https://chat.whatsapp.com/K6x0GwLM6x386z5yL6ZvIu?s=cl&p=a&ilr=1&amv=1" target="_blank" class="bg-slate-950 hover:bg-slate-900 border border-slate-800 hover:border-red-500/50 p-3.5 rounded-2xl transition flex items-center justify-between text-xs text-slate-200 group shadow-md">
+                                    <span class="flex items-center gap-2.5">🎥 SL Movies Collective - 1</span>
+                                    <span class="bg-red-600/20 text-red-400 text-[11px] px-3 py-1.5 rounded-xl group-hover:bg-red-600 group-hover:text-slate-950 font-bold transition">Join Group ↗</span>
                                 </a>
 
                                 <!-- Movie Group 2 -->
-                                <a href="https://chat.whatsapp.com/EByjBFmmRwN20zenvGhdMO?s=cl&p=a&ilr=4&amv=0" target="_blank" class="bg-slate-900 hover:bg-slate-850 border border-slate-800 hover:border-emerald-500/40 p-3 rounded-xl transition flex items-center justify-between text-xs text-slate-200 group">
-                                    <span class="flex items-center gap-2">🎥 SL Movies Collective - 2</span>
-                                    <span class="bg-emerald-600/20 text-emerald-400 text-[10px] px-2.5 py-1 rounded-lg group-hover:bg-emerald-600 group-hover:text-slate-950">Join ↗</span>
+                                <a href="https://chat.whatsapp.com/EByjBFmmRwN20zenvGhdMO?s=cl&p=a&ilr=4&amv=0" target="_blank" class="bg-slate-950 hover:bg-slate-900 border border-slate-800 hover:border-red-500/50 p-3.5 rounded-2xl transition flex items-center justify-between text-xs text-slate-200 group shadow-md">
+                                    <span class="flex items-center gap-2.5">🎥 SL Movies Collective - 2</span>
+                                    <span class="bg-red-600/20 text-red-400 text-[11px] px-3 py-1.5 rounded-xl group-hover:bg-red-600 group-hover:text-slate-950 font-bold transition">Join Group ↗</span>
                                 </a>
 
                                 <!-- Movie Group 3 -->
-                                <a href="https://chat.whatsapp.com/Len7YzUeVLz0VzTi0tbmql?s=cl&p=a&ilr=1&amv=1" target="_blank" class="bg-slate-900 hover:bg-slate-850 border border-slate-800 hover:border-emerald-500/40 p-3 rounded-xl transition flex items-center justify-between text-xs text-slate-200 group">
-                                    <span class="flex items-center gap-2">🎥 SL Movies Collective - 3</span>
-                                    <span class="bg-emerald-600/20 text-emerald-400 text-[10px] px-2.5 py-1 rounded-lg group-hover:bg-emerald-600 group-hover:text-slate-950">Join ↗</span>
+                                <a href="https://chat.whatsapp.com/Len7YzUeVLz0VzTi0tbmql?s=cl&p=a&ilr=1&amv=1" target="_blank" class="bg-slate-950 hover:bg-slate-900 border border-slate-800 hover:border-red-500/50 p-3.5 rounded-2xl transition flex items-center justify-between text-xs text-slate-200 group shadow-md">
+                                    <span class="flex items-center gap-2.5">🎥 SL Movies Collective - 3</span>
+                                    <span class="bg-red-600/20 text-red-400 text-[11px] px-3 py-1.5 rounded-xl group-hover:bg-red-600 group-hover:text-slate-950 font-bold transition">Join Group ↗</span>
                                 </a>
                             </div>
                         </div>
 
-                        <!-- Inline Error Box -->
-                        <div id="error-alert-box" class="hidden bg-red-950/40 border border-red-500/40 p-4 rounded-xl text-xs text-red-400 font-semibold text-center">
-                            ⚠️ කරුණාකර ඔබේ නම සහ Movie/Series එකේ නම නිවැරදිව ඇතුළත් කරන්න!
+                        <!-- STEP 2: REQUEST FORM -->
+                        <div class="w-full bg-slate-900/90 backdrop-blur-xl rounded-3xl border border-slate-800 p-6 sm:p-8 shadow-2xl flex flex-col gap-6">
+                            <div class="text-center">
+                                <span class="text-xs uppercase tracking-widest text-emerald-400 font-extrabold bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">Step 2: Submit Request</span>
+                                <h2 class="text-xl font-black text-white mt-3 mb-1">🎬 Movie හෝ Series එකක් ඉල්ලුම් කරන්න</h2>
+                                <p class="text-slate-400 text-xs">ඔබට අවශ්‍ය චිත්‍රපටයේ හෝ කතා මාලාවේ නම පහතින් පුරවා ඉල්ලීම සකස් කරගන්න.</p>
+                            </div>
+
+                            <div id="request-form-container" class="flex flex-col gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-semibold text-slate-300">👤 ඔබේ නම (Your Name)</label>
+                                    <input type="text" id="req-name" placeholder="උදා: Kamal Perera" class="bg-slate-950 border border-slate-800 text-slate-100 text-xs p-3.5 rounded-xl focus:outline-none focus:border-red-500 transition">
+                                </div>
+
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-semibold text-slate-300">📌 වර්ගය (Type)</label>
+                                    <select id="req-type" class="bg-slate-950 border border-slate-800 text-slate-100 text-xs p-3.5 rounded-xl focus:outline-none focus:border-red-500 transition cursor-pointer">
+                                        <option value="Movie 🎬">Movie 🎬</option>
+                                        <option value="TV Series 📺">TV Series 📺</option>
+                                    </select>
+                                </div>
+
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-semibold text-slate-300">🎥 Movie හෝ Series එකේ නම (Name)</label>
+                                    <input type="text" id="req-moviename" placeholder="උදා: Interstellar / Breaking Bad" class="bg-slate-950 border border-slate-800 text-slate-100 text-xs p-3.5 rounded-xl focus:outline-none focus:border-red-500 transition">
+                                </div>
+
+                                <button onclick="generateRequestPreview()" class="bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-400 hover:to-rose-400 text-slate-950 font-bold text-xs py-4 rounded-xl transition cursor-pointer shadow-lg shadow-red-500/20 flex items-center justify-center gap-2 mt-2">
+                                    <span>✨ Request Message එක සකසන්න</span>
+                                </button>
+                            </div>
+
+                            <!-- Inline Preview Box -->
+                            <div id="request-preview-box" class="hidden flex flex-col gap-4 bg-slate-950 border border-slate-800/80 p-5 rounded-2xl">
+                                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                                    <span class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">✅ ඉල්ලීම සූදානම්! දැන් මෙය Copy කර group එකට දාන්න.</span>
+                                    <button onclick="resetRequestForm()" class="text-[11px] text-slate-400 hover:text-white underline cursor-pointer">නව ඉල්ලීමක්</button>
+                                </div>
+
+                                <div id="formatted-message-text" class="bg-slate-900 border border-slate-800 p-3.5 rounded-xl text-xs font-mono text-slate-200 select-all leading-relaxed"></div>
+
+                                <button onclick="copyMessage()" id="copy-msg-btn" class="w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs py-3.5 rounded-xl transition cursor-pointer flex items-center justify-center gap-1.5 shadow-md">
+                                    📋 Message එක Copy කරගන්න
+                                </button>
+                            </div>
+
+                            <!-- Inline Error Box -->
+                            <div id="error-alert-box" class="hidden bg-red-950/40 border border-red-500/40 p-4 rounded-xl text-xs text-red-400 font-semibold text-center">
+                                ⚠️ කරුණාකර ඔබේ නම සහ Movie/Series එකේ නම නිවැරදිව ඇතුළත් කරන්න!
+                            </div>
                         </div>
+
                     </div>
                 `;
                 return;
@@ -399,13 +409,13 @@
             navigator.clipboard.writeText(textToCopy);
             
             const copyBtn = document.getElementById('copy-msg-btn');
-            copyBtn.innerText = "✅ Copied Successfully!";
-            copyBtn.classList.add('bg-emerald-600', 'text-slate-950');
+            copyBtn.innerText = "✅ Copied Successfully! දැන් Group එකට ගොස් Paste කරන්න.";
+            copyBtn.classList.add('bg-slate-800', 'text-emerald-400');
             
             setTimeout(() => {
                 copyBtn.innerText = "📋 Message එක Copy කරගන්න";
-                copyBtn.classList.remove('bg-emerald-600', 'text-slate-950');
-            }, 2500);
+                copyBtn.classList.remove('bg-slate-800', 'text-emerald-400');
+            }, 3000);
         }
 
         function resetRequestForm() {
