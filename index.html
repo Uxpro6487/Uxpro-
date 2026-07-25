@@ -59,7 +59,7 @@
             <div class="flex flex-wrap justify-center gap-2.5 mb-6">
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-slate-300 text-xs font-medium">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    VERSION V1.9 · FIXED & ACTIVE
+                    VERSION V2.0 · CINESUBZ STYLE MODAL
                 </div>
             </div>
 
@@ -155,10 +155,49 @@
         </main>
     </div>
 
+    <!-- Cinesubz Style Detail Modal -->
+    <div id="movie-detail-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-purple-500/40 rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative flex flex-col gap-5 animate-in fade-in zoom-in-95 duration-200">
+            <button onclick="closeMovieModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center text-xs font-bold transition cursor-pointer">✕</button>
+            
+            <div class="flex items-start gap-4">
+                <div class="w-24 h-36 bg-slate-950 rounded-xl border border-slate-800 flex items-center justify-center p-2 text-center text-xs font-black text-purple-400 shrink-0 shadow-inner" id="modal-poster-text">
+                    POSTER
+                </div>
+                <div class="flex flex-col gap-2 flex-1">
+                    <span id="modal-type-badge" class="text-[10px] uppercase tracking-wider font-extrabold bg-purple-500/20 text-purple-300 px-2.5 py-1 rounded-full w-max border border-purple-500/30">Movie</span>
+                    <h2 id="modal-title" class="text-xl sm:text-2xl font-black text-white leading-tight">Movie Title</h2>
+                    <div class="flex items-center gap-3 text-xs text-slate-400 font-medium">
+                        <span id="modal-year" class="text-slate-300">2026</span>
+                        <span>•</span>
+                        <span id="modal-genre" class="text-purple-400 font-bold">Action</span>
+                        <span>•</span>
+                        <span id="modal-rating" class="bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded font-bold">⭐ 8.5</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-950 border border-slate-800/80 p-4 rounded-2xl flex flex-col gap-2">
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Description / Synopsis</span>
+                <p id="modal-synopsis" class="text-slate-300 text-xs leading-relaxed">මෙම චිත්‍රපටය හෝ කතා මාලාව පිළිබඳ විස්තරය මෙහි දැක්වේ. ඉතා කුතුහලයෙන් යුක්ත ප්‍රියජනක කතා තේමාවක් මෙහි අන්තර්ගත වේ.</p>
+            </div>
+
+            <div class="flex gap-3 pt-2">
+                <button onclick="openTrailerFromModal()" class="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs py-3.5 rounded-xl shadow-lg shadow-purple-600/25 flex items-center justify-center gap-2 cursor-pointer transition">
+                    <span>🍿 Watch Trailer on YouTube</span>
+                </button>
+                <button onclick="requestFromModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs px-5 py-3.5 rounded-xl transition cursor-pointer border border-slate-700">
+                    🎬 Request Subtitle
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripting -->
     <script>
         let currentTool = 'request';
         let massiveCatalog = [];
+        let activeModalMovie = null;
 
         // Safe 1000+ Database Generator
         function generateMassiveCatalog() {
@@ -181,7 +220,8 @@
                     type: typesList[i % typesList.length],
                     genre: genresList[i % genresList.length],
                     year: 2010 + (i % 16),
-                    rating: (7.0 + ((i % 25) / 10)).toFixed(1)
+                    rating: (7.0 + ((i % 25) / 10)).toFixed(1),
+                    synopsis: `An extraordinary ${genresList[i % genresList.length].toLowerCase()} masterpiece that takes viewers on an unforgettable journey through high-stakes drama and thrilling sequences.`
                 });
             }
         }
@@ -225,7 +265,7 @@
                             <div>
                                 <span class="text-xs uppercase tracking-widest text-purple-400 font-extrabold bg-purple-500/10 px-3 py-1 rounded-full border border-purple-500/20">Massive Database</span>
                                 <h2 class="text-xl sm:text-2xl font-black text-white mt-3 mb-1">🔥 1000+ Trending Movies & TV Series</h2>
-                                <p class="text-slate-400 text-xs">ප්‍රවණතා අතර ඇති චිත්‍රපට සහ කතා මාලා 1000+ කට අධික සංඛ්‍යාවක් මෙහි අඩංගු වේ.</p>
+                                <p class="text-slate-400 text-xs">ප්‍රවණතා අතර ඇති චිත්‍රපට සහ කතා මාලා 1000+ කට අධික සංඛ්‍යාවක් මෙහි අඩංගු වේ. නමක් මත ක්ලික් කර විස්තර බලන්න.</p>
                             </div>
                             <!-- Search & Filter Controls -->
                             <div class="flex flex-wrap gap-3 w-full md:w-auto">
@@ -413,7 +453,7 @@
                 return;
             }
             grid.innerHTML = items.map(item => `
-                <div class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden flex flex-col group shadow-md hover:border-purple-500/50 transition">
+                <div onclick='openMovieModal(${JSON.stringify(item)})' class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden flex flex-col group shadow-md hover:border-purple-500/50 transition cursor-pointer">
                     <div class="h-36 bg-slate-900 relative flex items-center justify-center overflow-hidden p-2 text-center">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10"></div>
                         <span class="text-xs font-black text-slate-300 z-20 group-hover:scale-105 transition">${item.title}</span>
@@ -424,12 +464,47 @@
                             <span>${item.genre}</span>
                             <span>${item.year}</span>
                         </div>
-                        <button onclick="quickSelectTrailer('https://www.youtube.com/results?search_query=${encodeURIComponent(item.title + ' trailer')}')" class="w-full bg-purple-600/20 hover:bg-purple-600 text-purple-400 hover:text-slate-950 font-bold text-[11px] py-2 rounded-xl transition flex items-center justify-center gap-1 cursor-pointer">
-                            🍿 Trailer & Details
-                        </button>
+                        <div class="w-full bg-purple-600/20 group-hover:bg-purple-600 text-purple-400 group-hover:text-slate-950 font-bold text-[11px] py-2 rounded-xl transition flex items-center justify-center gap-1">
+                            ℹ️ View Details
+                        </div>
                     </div>
                 </div>
             `).join('');
+        }
+
+        function openMovieModal(item) {
+            activeModalMovie = item;
+            document.getElementById('modal-poster-text').innerText = item.type;
+            document.getElementById('modal-type-badge').innerText = item.type;
+            document.getElementById('modal-title').innerText = item.title;
+            document.getElementById('modal-year').innerText = item.year;
+            document.getElementById('modal-genre').innerText = item.genre;
+            document.getElementById('modal-rating').innerText = `⭐ ${item.rating}`;
+            document.getElementById('modal-synopsis').innerText = item.synopsis;
+            
+            document.getElementById('movie-detail-modal').classList.remove('hidden');
+        }
+
+        function closeMovieModal() {
+            document.getElementById('movie-detail-modal').classList.add('hidden');
+        }
+
+        function openTrailerFromModal() {
+            if (!activeModalMovie) return;
+            const searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(activeModalMovie.title + ' official trailer')}`;
+            window.open(searchUrl, '_blank');
+        }
+
+        function requestFromModal() {
+            if (!activeModalMovie) return;
+            closeMovieModal();
+            enterSandbox('request');
+            setTimeout(() => {
+                const nameInput = document.getElementById('req-moviename');
+                const typeSelect = document.getElementById('req-type');
+                if (nameInput) nameInput.value = activeModalMovie.title;
+                if (typeSelect) typeSelect.value = activeModalMovie.type.includes('Series') ? 'TV Series 📺' : 'Movie 🎬';
+            }, 100);
         }
 
         function goHome() {
@@ -478,10 +553,6 @@
             document.getElementById('dl-720p').href = videoId ? `https://www.y2mate.com/youtube/${videoId}` : `https://www.y2mate.com`;
             document.getElementById('dl-audio').href = `https://en.savefrom.net/1-youtube-downloader-40/?url=${encodedUrl}`;
             document.getElementById('trailer-result-box').classList.remove('hidden');
-        }
-
-        function quickSelectTrailer(url) {
-            window.open(url, '_blank');
         }
 
         function generateRequestPreview() {
