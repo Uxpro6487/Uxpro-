@@ -45,7 +45,9 @@
                     <span class="w-4 h-0.5 bg-slate-300 rounded-full"></span>
                 </button>
                 <div id="menu-dropdown" class="hidden absolute right-0 mt-2 w-64 bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl py-2 z-50 max-h-[75vh] overflow-y-auto">
-                    <div class="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-800">Developer Suite</div>
+                    <div class="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-800">SL Movies Collective</div>
+                    <button onclick="switchTool('request')" class="w-full text-left px-4 py-2.5 text-xs text-red-400 font-bold hover:bg-slate-800/80 transition flex items-center gap-2 cursor-pointer">🎬 Movie & Series Request</button>
+                    <div class="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-t border-b border-slate-800 mt-1">Developer Suite</div>
                     <button onclick="switchTool('refactor')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">⚡ Code Refactor & ZK</button>
                     <button onclick="switchTool('json')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">📦 JSON Formatter</button>
                     <button onclick="switchTool('base64')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🔤 Base64 Encoder</button>
@@ -82,8 +84,8 @@
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 w-full max-w-md justify-center">
-                <button onclick="enterSandbox('refactor')" class="flex-1 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold px-6 py-3.5 rounded-2xl transition duration-300 cursor-pointer shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2">
-                    <span>Get Started</span>
+                <button onclick="enterSandbox('request')" class="flex-1 bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-400 hover:to-rose-400 text-slate-950 font-bold px-6 py-3.5 rounded-2xl transition duration-300 cursor-pointer shadow-lg shadow-red-500/25 flex items-center justify-center gap-2">
+                    <span>🎬 Request Movie</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
                 </button>
                 <button onclick="toggleHistoryModal()" class="flex-1 bg-slate-900/80 hover:bg-slate-900 border border-slate-800 text-slate-300 font-semibold px-6 py-3.5 rounded-2xl transition duration-300 cursor-pointer flex items-center justify-center gap-2">
@@ -100,6 +102,13 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div onclick="enterSandbox('request')" class="bg-slate-900/50 backdrop-blur-md border border-red-500/40 p-5 rounded-3xl hover:border-red-500 transition duration-300 cursor-pointer flex flex-col justify-between shadow-lg shadow-red-500/5">
+                    <div>
+                        <div class="w-9 h-9 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 mb-3 text-base">🎬</div>
+                        <h3 class="text-sm font-bold text-white mb-1">Movie Request</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Request movies & series directly to WhatsApp.</p>
+                    </div>
+                </div>
                 <div onclick="enterSandbox('wallpaper')" class="bg-slate-900/50 backdrop-blur-md border border-emerald-500/40 p-5 rounded-3xl hover:border-emerald-500 transition duration-300 cursor-pointer flex flex-col justify-between shadow-lg shadow-emerald-500/5">
                     <div>
                         <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-3 text-base">🖼️</div>
@@ -221,7 +230,9 @@
                     ⚙️ Switch Tool ▾
                 </button>
                 <div id="menu-dropdown" class="hidden absolute right-0 top-10 w-64 bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl py-2 z-50 max-h-[75vh] overflow-y-auto">
-                    <div class="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-800">Developer Suite</div>
+                    <div class="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-800">SL Movies Collective</div>
+                    <button onclick="switchTool('request')" class="w-full text-left px-4 py-2.5 text-xs text-red-400 font-bold hover:bg-slate-800/80 transition flex items-center gap-2 cursor-pointer">🎬 Movie & Series Request</button>
+                    <div class="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-t border-b border-slate-800 mt-1">Developer Suite</div>
                     <button onclick="switchTool('refactor')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">⚡ Code Refactor & ZK</button>
                     <button onclick="switchTool('json')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">📦 JSON Formatter</button>
                     <button onclick="switchTool('base64')" class="w-full text-left px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-800/80 hover:text-white transition flex items-center gap-2 cursor-pointer">🔤 Base64 Encoder</button>
@@ -393,7 +404,13 @@
             const codeInp = document.getElementById('code-input');
             const actBtn = document.getElementById('action-btn');
 
-            if (tool === 'refactor') {
+            if (tool === 'request') {
+                titleElem.innerText = "SL Movies Collective - Request Hub";
+                inputLbl.innerHTML = `<span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-red-400"></span> Request Details</span>`;
+                outputLbl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Live WhatsApp Preview`;
+                actBtn.innerText = "Send to WhatsApp";
+                codeInp.value = "Group: 🎥 SL MOVIES COLLECTIVE ッ\nAdmin: Ready to receive requests.";
+            } else if (tool === 'refactor') {
                 titleElem.innerText = "Code Refactor & ZK Audit";
                 inputLbl.innerHTML = `
                     <span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
@@ -554,7 +571,33 @@
             const outputDiv = document.getElementById('output-container');
             const copyBtn = document.getElementById('copy-btn');
 
-            if (currentTool === 'refactor') {
+            if (currentTool === 'request') {
+                const name = prompt("ඔබේ නම ඇතුළත් කරන්න (Enter your name):");
+                const movieName = prompt("ඔබට අවශ්‍ය Movie හෝ Series එකේ නම:");
+                const type = confirm("ఇది TV Series එකක්ද? (OK = Series, Cancel = Movie)") ? "TV Series 📺" : "Movie 🎬";
+
+                if (!name || !movieName) {
+                    outputDiv.innerHTML = `<span class="text-red-400">කරුණාකර නම සහ නම නිවැරදිව ලබා දෙන්න!</span>`;
+                    return;
+                }
+
+                // ඔයාගේ WhatsApp අංකය මෙතැනට දෙන්න (Country code සමඟ, උදා: 9477xxxxxxx)
+                const adminWhatsAppNumber = "94740850438"; 
+
+                const message = `*--- NEW MOVIE REQUEST ---*%0A%0A*👤 නම:* ${name}%0A*📌 වර්ගය:* ${type}%0A*🎥 නම:* ${movieName}%0A%0A_🎬 SL MOVIES COLLECTIVE ッ_`;
+                const whatsappURL = `https://wa.me/${adminWhatsAppNumber}?text=${message}`;
+
+                latestRefactoredCode = `Name: ${name}\nType: ${type}\nRequested: ${movieName}\nWhatsApp Link Generated!`;
+                outputDiv.innerHTML = `
+                    <div class="p-6 bg-slate-950 rounded-2xl flex flex-col items-center justify-center border border-slate-800 gap-4 text-center">
+                        <p class="text-xs text-slate-300">ඔබේ ඉල්ලීම සූදානම්! පහත බොත්තම ඔබා WhatsApp වෙත යවන්න.</p>
+                        <a href="${whatsappURL}" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs px-5 py-2.5 rounded-xl transition cursor-pointer shadow-md shadow-emerald-600/20 flex items-center gap-2">
+                            📲 Open WhatsApp & Send
+                        </a>
+                    </div>`;
+                copyBtn.classList.remove('hidden');
+                return;
+            } else if (currentTool === 'refactor') {
                 const language = document.getElementById('language-select').value;
                 outputDiv.innerHTML = `<span class="text-amber-400">[1] Generating ZK-Proof...</span><br>`;
                 const hash = await generateZKProof(codeInput);
