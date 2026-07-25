@@ -70,7 +70,7 @@
 
             <div class="flex flex-col sm:flex-row gap-4 w-full max-w-md justify-center">
                 <button onclick="enterSandbox('request')" class="flex-1 bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-400 hover:to-rose-400 text-slate-950 font-bold px-6 py-3.5 rounded-2xl transition duration-300 cursor-pointer shadow-lg shadow-red-500/25 flex items-center justify-center gap-2">
-                    <span>🎬 Request Movie</span>
+                    <span>🎬 Request Movie / Series</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
                 </button>
             </div>
@@ -88,7 +88,7 @@
                     <div>
                         <div class="w-9 h-9 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 mb-3 text-base">🎬</div>
                         <h3 class="text-sm font-bold text-white mb-1">Movie Request</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Request movies & series for WhatsApp group via clean UI.</p>
+                        <p class="text-slate-400 text-xs leading-relaxed">Request movies & series for WhatsApp groups via clean UI.</p>
                     </div>
                 </div>
                 <div onclick="enterSandbox('wallpaper')" class="bg-slate-900/50 backdrop-blur-md border border-emerald-500/40 p-5 rounded-3xl hover:border-emerald-500 transition duration-300 cursor-pointer flex flex-col justify-between shadow-lg shadow-emerald-500/5">
@@ -200,15 +200,15 @@
                 return;
             }
 
-            // Handle Request Hub with Clean Inline UI
+            // Handle Request Hub with Attractive Group Selection Cards
             if (tool === 'request') {
                 titleElem.innerText = "SL Movies Collective - Request Hub";
                 mainContainer.className = "flex-1 flex flex-col p-4 sm:p-6 max-w-xl mx-auto w-full justify-center items-center";
                 mainContainer.innerHTML = `
                     <div class="w-full bg-slate-900/90 backdrop-blur-xl rounded-3xl border border-slate-800 p-6 sm:p-8 shadow-2xl flex flex-col gap-6">
                         <div class="text-center">
-                            <h1 class="text-xl sm:text-2xl font-black text-white flex items-center justify-center gap-2 mb-1">🎬 Movie & Series Request</h1>
-                            <p class="text-slate-400 text-xs">ඔබට අවශ්‍ය චිත්‍රපට හෝ කතා මාලාව පහතින් පුරවා අපගේ සමූහයට ඉල්ලුම් කරන්න.</p>
+                            <h1 class="text-xl sm:text-2xl font-black text-white flex items-center justify-center gap-2 mb-1">🎬 Movie & Series Request Hub</h1>
+                            <p class="text-slate-400 text-xs">ඔබට අවශ්‍ය චිත්‍රපට හෝ කතා මාලාව පහතින් පුරවා අදාළ WhatsApp සමූහයට ඉල්ලුම් කරන්න.</p>
                         </div>
 
                         <div id="request-form-container" class="flex flex-col gap-4">
@@ -235,23 +235,48 @@
                             </button>
                         </div>
 
-                        <!-- Inline Preview Box -->
+                        <!-- Inline Preview & Group Selection Box -->
                         <div id="request-preview-box" class="hidden flex flex-col gap-4 bg-slate-950 border border-slate-800/80 p-5 rounded-2xl">
                             <div class="flex items-center justify-between border-b border-slate-800 pb-3">
                                 <span class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">✅ ඉල්ලීම සූදානම්!</span>
                                 <button onclick="resetRequestForm()" class="text-[11px] text-slate-400 hover:text-white underline cursor-pointer">නව ඉල්ලීමක්</button>
                             </div>
 
-                            <div class="text-[11px] text-slate-400">පහත පණිවිඩය Copy කරගෙන හෝ WhatsApp සමූහයට ගොස් Paste කරන්න:</div>
+                            <div class="text-[11px] text-slate-400">පළමුව පහත Message එක **Copy** කරගන්න. ඉන්පසු ඔබ සම්බන්ධ වීමට කැමති WhatsApp Group එක තෝරාගෙන Group එකට ගොස් එය Paste කරන්න:</div>
 
+                            <!-- Formatted Message Box -->
                             <div id="formatted-message-text" class="bg-slate-900 border border-slate-800 p-3.5 rounded-xl text-xs font-mono text-slate-200 select-all leading-relaxed"></div>
 
-                            <div class="flex flex-col sm:flex-row gap-2.5 pt-1">
-                                <button onclick="copyMessage()" id="copy-msg-btn" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs py-3 rounded-xl transition cursor-pointer flex items-center justify-center gap-1.5 border border-slate-700">
-                                    📋 Message එක Copy කරගන්න
-                                </button>
-                                <a id="whatsapp-group-link-btn" href="#" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs py-3 rounded-xl transition cursor-pointer flex items-center justify-center gap-1.5 text-center shadow-md shadow-emerald-600/20">
-                                    💬 WhatsApp Group වෙත යන්න
+                            <button onclick="copyMessage()" id="copy-msg-btn" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs py-3 rounded-xl transition cursor-pointer flex items-center justify-center gap-1.5 border border-slate-700 shadow-sm">
+                                📋 Message එක Copy කරගන්න
+                            </button>
+
+                            <div class="text-xs font-bold text-slate-300 mt-2">💬 WhatsApp සමූහයන් (WhatsApp Groups):</div>
+                            
+                            <!-- Attractive Group Links Grid -->
+                            <div class="flex flex-col gap-2.5">
+                                <!-- TV Series Group -->
+                                <a href="https://chat.whatsapp.com/LwnUMY8H3exIEvGIzWowCs?s=cl&p=a&ilr=1&amv=1" target="_blank" class="bg-gradient-to-r from-indigo-950/60 to-purple-950/60 hover:from-indigo-900/80 hover:to-purple-900/80 border border-indigo-500/40 p-3 rounded-xl transition flex items-center justify-between text-xs text-indigo-300 font-semibold group shadow-md">
+                                    <span class="flex items-center gap-2">📺 SL Movies Collective TV SERIES Group</span>
+                                    <span class="bg-indigo-600 text-white text-[10px] px-2.5 py-1 rounded-lg group-hover:bg-indigo-500">Join ↗</span>
+                                </a>
+
+                                <!-- Movie Group 1 -->
+                                <a href="https://chat.whatsapp.com/K6x0GwLM6x386z5yL6ZvIu?s=cl&p=a&ilr=1&amv=1" target="_blank" class="bg-slate-900 hover:bg-slate-850 border border-slate-800 hover:border-emerald-500/40 p-3 rounded-xl transition flex items-center justify-between text-xs text-slate-200 group">
+                                    <span class="flex items-center gap-2">🎥 SL Movies Collective - 1</span>
+                                    <span class="bg-emerald-600/20 text-emerald-400 text-[10px] px-2.5 py-1 rounded-lg group-hover:bg-emerald-600 group-hover:text-slate-950">Join ↗</span>
+                                </a>
+
+                                <!-- Movie Group 2 -->
+                                <a href="https://chat.whatsapp.com/EByjBFmmRwN20zenvGhdMO?s=cl&p=a&ilr=4&amv=0" target="_blank" class="bg-slate-900 hover:bg-slate-850 border border-slate-800 hover:border-emerald-500/40 p-3 rounded-xl transition flex items-center justify-between text-xs text-slate-200 group">
+                                    <span class="flex items-center gap-2">🎥 SL Movies Collective - 2</span>
+                                    <span class="bg-emerald-600/20 text-emerald-400 text-[10px] px-2.5 py-1 rounded-lg group-hover:bg-emerald-600 group-hover:text-slate-950">Join ↗</span>
+                                </a>
+
+                                <!-- Movie Group 3 -->
+                                <a href="https://chat.whatsapp.com/Len7YzUeVLz0VzTi0tbmql?s=cl&p=a&ilr=1&amv=1" target="_blank" class="bg-slate-900 hover:bg-slate-850 border border-slate-800 hover:border-emerald-500/40 p-3 rounded-xl transition flex items-center justify-between text-xs text-slate-200 group">
+                                    <span class="flex items-center gap-2">🎥 SL Movies Collective - 3</span>
+                                    <span class="bg-emerald-600/20 text-emerald-400 text-[10px] px-2.5 py-1 rounded-lg group-hover:bg-emerald-600 group-hover:text-slate-950">Join ↗</span>
                                 </a>
                             </div>
                         </div>
@@ -344,9 +369,7 @@
             `).join('');
         }
 
-        // WhatsApp Request Hub Functions (With Your Invite Link Added)
-        const whatsappGroupInviteLink = "https://chat.whatsapp.com/KGJcZ65J2NeJk2q1AIJfKs?s=cl&p=a&ilr=1&amv=1";
-
+        // WhatsApp Request Hub Functions
         function generateRequestPreview() {
             const name = document.getElementById('req-name').value.trim();
             const type = document.getElementById('req-type').value;
@@ -366,7 +389,6 @@
             const formattedText = `*--- NEW MOVIE REQUEST ---*\n\n*👤 නම:* ${name}\n*📌 වර්ගය:* ${type}\n*🎥 නම:* ${movieName}\n\n_🎬 SL MOVIES COLLECTIVE ッ_`;
 
             document.getElementById('formatted-message-text').innerText = formattedText;
-            document.getElementById('whatsapp-group-link-btn').href = whatsappGroupInviteLink;
             
             previewBox.classList.remove('hidden');
             previewBox.scrollIntoView({ behavior: 'smooth' });
@@ -377,7 +399,7 @@
             navigator.clipboard.writeText(textToCopy);
             
             const copyBtn = document.getElementById('copy-msg-btn');
-            copyBtn.innerText = "✅ Copied!";
+            copyBtn.innerText = "✅ Copied Successfully!";
             copyBtn.classList.add('bg-emerald-600', 'text-slate-950');
             
             setTimeout(() => {
